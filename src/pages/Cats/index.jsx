@@ -1,14 +1,14 @@
 // CatList.jsx
 import React, { useEffect, useState } from 'react';
 
-const Gatos = () => {
+export default function Cats() {
   const [cats, setCats] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  async function buscarGatos() {
+  async function searchCats() {
     try {
-      const response = await fetch('https://api.thecatapi.com/v1/images/search?limit=5', {
+      const response = await fetch('https://api.thecatapi.com/v1/breeds', {
         headers: {
           'x-api-key': 'live_VjHmZzGkhlngtKfw0wW7FlAjrHWNtwQIo1LYie3su2otT1tLJPYF6nVOEmlj2dt7'  // Substitua 'YOUR_API_KEY' pela sua chave da API
         }
@@ -18,14 +18,7 @@ const Gatos = () => {
         throw new Error('Network response was not ok');
       }
 
-      // const data = await response.json();
-      const data = [{
-        "id": "ebv",
-        "url": "https://cdn2.thecatapi.com/images/ebv.jpg",
-        "width": 176, "height": 540,
-        "breeds": [],
-        "favourite": {}
-      }]
+      const data = await response.json();
 
       setCats(data);
     } catch (err) {
@@ -36,7 +29,7 @@ const Gatos = () => {
   }
 
   useEffect(() => {
-    buscarGatos();
+    searchCats();
   }, []);
 
   if (loading) return <p>Carregando...</p>;
@@ -56,4 +49,3 @@ const Gatos = () => {
   );
 };
 
-export default Gatos;
