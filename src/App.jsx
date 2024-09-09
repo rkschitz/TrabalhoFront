@@ -10,24 +10,36 @@ import AmericanWirehair from './pages/AmericanWirehair';
 import AmericanCurly from './pages/AmericanCurly';
 import AmericanShortHair from './pages/AmericanShortHair';
 import BreedNotListed from './pages/BreedNotListed';
+import Login from './pages/Login';
+import Register from './pages/Register';
 
 function App() {
+
+  const user = localStorage.getItem('user');
+
   return (
     <>
-      <Header />
+      {user ? <Header /> : null}
       <div className='content'>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path='/allCats' element={<Cats />} />
-          <Route path='/americanBobtails' element={<AmericanBobtail />} />
-          <Route path='/abyssinian' element={<Abyssinian />} />
-          <Route path='/americanWirehair' element={<AmericanWirehair />} />
-          <Route path='/americanCurly' element={<AmericanCurly />} />
-          <Route path='/americanShortHair' element={<AmericanShortHair />} />
-          <Route path='/breedNotListed' element={<BreedNotListed />} />
+          <Route path="/register" element={<Register />} />
+          {user ? (
+            <>
+              <Route path="/" element={<Home />} />
+              <Route path="/allCats" element={<Cats />} />
+              <Route path="/americanBobtails" element={<AmericanBobtail />} />
+              <Route path="/abyssinian" element={<Abyssinian />} />
+              <Route path="/americanWirehair" element={<AmericanWirehair />} />
+              <Route path="/americanCurly" element={<AmericanCurly />} />
+              <Route path="/americanShortHair" element={<AmericanShortHair />} />
+              <Route path="/breedNotListed" element={<BreedNotListed />} />
+            </>
+          ) : (
+            <Route path="*" element={<Login />} />
+          )}
         </Routes>
       </div>
-      <Footer />
+      {user ? <Footer /> : null}
     </>
   )
 }

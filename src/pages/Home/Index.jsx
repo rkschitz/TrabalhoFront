@@ -2,14 +2,14 @@ import './styles.css'
 
 export default function Home() {
   return (
-    <div className='container'>
+    <div className='home-container'>
       <h1>Bem-vindo à Nossa Aplicação!</h1>
-      <p>Esta aplicação é construída com React e ReactDOM.</p>
+      <p>Essa aplicação foi desenvolvida para a matéria de FullStack do professor Renan.</p>
       <p>
-        React é uma biblioteca JavaScript para criar interfaces de usuário interativas e dinâmicas de maneira eficiente. Com React, podemos construir componentes reutilizáveis que tornam o desenvolvimento de interfaces mais organizado e modular.
+        O intuito dessa aplicação é fazer o consumo de uma API.
       </p>
       <p>
-        ReactDOM é a biblioteca responsável por renderizar esses componentes React no DOM do navegador, permitindo que sua aplicação se atualize e reaja às interações do usuário de forma fluida e rápida.
+        API utilizada: <a href='https://thecatapi.com/'>The Cat API</a>
       </p>
       <p>
         Explore as funcionalidades e veja como o React transforma a experiência de desenvolvimento web!

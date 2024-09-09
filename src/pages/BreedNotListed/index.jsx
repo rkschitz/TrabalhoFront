@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Card from "../../components/Card";
+import './styles.css';
 
 export default function BreedNotListed() {
 
@@ -81,7 +82,7 @@ export default function BreedNotListed() {
     }
 
     return (
-        <>
+        <div className="breedNotListed">
             <select onChange={(e) => setBreed(e.target.value)} >
                 <option disabled hidden value={'A'} selected>Escolha</option>
                 {racas.map((item) => (
@@ -96,6 +97,6 @@ export default function BreedNotListed() {
                 limit={100}
                 key={refresh}
             />
-        </>
+        </div>
     )
 }
