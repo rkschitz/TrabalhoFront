@@ -1,0 +1,44 @@
+.slider-container {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.slider {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 400px;
+}
+
+.slide {
+    display: none;
+    width: 100%;
+    height: 100%;
+    transition: all 0.5s ease;
+}
+
+.slide.active {
+    display: block;
+}
+
+button.prev, button.next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+button.prev {
+    left: 10px;
+}
+
+button.next {
+    right: 10px;
+}

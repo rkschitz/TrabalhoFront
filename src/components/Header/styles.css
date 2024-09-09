@@ -1,40 +1,60 @@
+.header-container{
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
 header {
-    background-color: #07912a;
+    background-color: var(--var-bg-nav-primary);
     color: white;
     padding: 1em;
     display: flex;
     flex-direction: row;
     align-items: center; /* Alinha verticalmente */
     justify-content: center; /* Centraliza horizontalmente */
-    gap: 1em;
+    font-size: 1rem;
+    height: 30px;
+    border-bottom: solid 2px black ;
 }
 
 .menu {
-    background-color: #4CAF50;
+    background-color: var(--var-bg-nav-primary);
+    border-bottom: solid 2px black ;
 }
 
 .menu ul{
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    list-style: none;
+    gap: 10px;
+    flex-wrap: wrap;
+    flex-direction: row;
 }
 
 .menu li{
     color: white;
     text-align: center;
     height: max-content;
-    width: 99%;
-    padding: 5px;
-    transition: background-color 1s ease;
+    width: 200px;
+    transition: all 1s ease;
+    color: black;
 }
 
 .menu a{
     text-decoration: none;
-    width: 50%;
     margin: 0;
 }
 
-.menu li:hover {
-    background-color: #037e22;
+.menu a:hover {
+    background-color: var(--var-bg-nav-hover);
+    text-decoration: underline;
+    text-decoration-color: black;
+}
+
+.user-button{
+    position: absolute;
+    right: 0;
+    margin-right: 10px;
 }

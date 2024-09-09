@@ -1,16 +1,22 @@
-import viteLogo from '../../../public/vite.svg'
-import reactLogo from '../../assets/react.svg'
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 import './styles.css'
+import { useEffect } from 'react';
 
 export default function Header() {
 
+    function logOut() {
+        localStorage.removeItem('user');
+        window.location.href = '/login';
+    }
+
+
+
     return (
-        <>
+        <div className='header-container'>
             <header>
-                <h1>Minha Página React</h1>
-                <img src={reactLogo} alt='Logo do React' />
-                <img src={viteLogo} alt='Logo do Vite' />
+                <h1>🐈 Buscador de gatos por raça 🐈</h1>
+                <Link className='user-button' to="/login" onClick={logOut}>SAIR</Link >
             </header>
             <nav className="menu">
                 <ul>
@@ -40,6 +46,6 @@ export default function Header() {
                     </Link>
                 </ul>
             </nav>
-        </>
+        </div>
     )
 }

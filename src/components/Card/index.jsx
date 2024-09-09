@@ -1,18 +1,22 @@
-import { useState, useEffect } from 'react'
-// import { getEspecie, getGenero, getStatus } from '../../fns/translate'
-import './styles.css'
+import { useState, useEffect } from 'react';
+import './styles.css';
 
 export default function Card({ breed, limit }) {
+    const [cats, setCats] = useState([]);
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [currentSlide, setCurrentSlide] = useState(0);
+    const [searchBreed, setSearchBreed] = useState('');
 
-    const [cats, setCats] = useState([])
-    const [error, setError] = useState(null)
-    const [loading, setLoading] = useState(null)
 
     async function searchCats() {
         try {
             const response = await fetch(`https://api.thecatapi.com/v1/images/search?breed_ids=${breed}&limit=${limit ? limit : 4}`, {
                 headers: {
-                    'x-api-key': 'live_VjHmZzGkhlngtKfw0wW7FlAjrHWNtwQIo1LYie3su2otT1tLJPYF6nVOEmlj2dt7'  
+                    'x-api-key': 'live_VjHmZzGkhlngtKfw0wW7FlAjrHWNtwQIo1LYie3su2otT1tLJPYF6nVOEmlj2dt7'
+                },
+                params: {
+                    has_breeds : 1
                 }
             });
 
@@ -21,7 +25,7 @@ export default function Card({ breed, limit }) {
             }
 
             const data = await response.json();
-
+            setSearchBreed(data[0].breeds[0].name);
             setCats(data);
         } catch (err) {
             setError('Ocorreu um erro ao buscar os gatos.');
@@ -33,20 +37,48 @@ export default function Card({ breed, limit }) {
     useEffect(() => {
         searchCats();
     }, []);
-    
+
+    const nextSlide = () => {
+        setCurrentSlide((prevSlide) => (prevSlide + 1) % cats.length);
+    };
+
+    const prevSlide = () => {
+        setCurrentSlide((prevSlide) => (prevSlide - 1 + cats.length) % cats.length);
+    };
+
     if (loading) return <p>Carregando...</p>;
     if (error) return <p>{error}</p>;
 
     return (
-        <div>
-            <h1>Imagens de Gatos</h1>
-            <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-                {cats.map((cat, index) => (
-                    <div key={index} style={{ margin: '10px' }}>
-                        <img src={cat.url} alt="Gato" style={{ width: '200px', height: '200px', objectFit: 'cover' }} />
-                    </div>
-                ))}
+        <>
+            <div className="slider-container">
+                <h1>Gatos da raça {searchBreed} </h1>
+                <div className="slider">
+                    {cats.map((cat, index) => (
+                        <div
+                            key={index}
+                            className={`slide ${index === currentSlide ? 'active' : ''}`}
+                        >
+                            {index === currentSlide && (
+                                <img
+                                    src={cat.url}
+                                    alt="Gato"
+                                    style={{ width: '400px', height: '400px', objectFit: 'cover' }}
+                                />
+                            )}
+                        </div>
+                    ))}
+                </div>
+                <button className="prev" onClick={prevSlide}>❮</button>
+                <button className="next" onClick={nextSlide}>❯</button>
             </div>
-        </div>
+            <div className="description">
+                <h2>{cats[0].breeds[0].name}</h2>
+                <p><strong>Origem:</strong> {cats[0].breeds[0].origin}</p>
+                <p><strong>Expectativa de vida:</strong> {cats[0].breeds[0].life_span} anos</p>
+                <p><strong>Temperamento:</strong> {cats[0].breeds[0].temperament}</p>
+                <a href={cats[0].breeds[0].wikipedia_url} target="_blank" rel="noreferrer">Saiba mais</a>
+            </div>
+        </>
     );
 }
