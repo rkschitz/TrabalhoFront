@@ -1,16 +1,23 @@
 .slider-container {
     position: relative;
     width: 100%;
-    max-width: 400px;
+    max-height: 600px;
+    max-width: 800px;   
     text-align: center;
 }
 
+.title {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
 .slider {
-    position: relative;
     overflow: hidden;
     width: 100%;
-    height: 400px;
+    height: 50vh;
+    max-height: 400px;
 }
+
 
 .slide {
     display: none;
@@ -19,26 +26,79 @@
     transition: all 0.5s ease;
 }
 
+
 .slide.active {
     display: block;
 }
 
-button.prev, button.next {
+.container-geral {
+    /* colocar todas as bordas pretas */
+    border: 1px solid black;
+    justify-content: center;
+    align-items: center;    
+    margin-top: 200px;
+}
+
+.description {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    bottom: 0;
+    width: 770px;
+    padding: 15px;
+    font-size: 1.2rem;
+    position: relative;
+
+}
+
+button.prev,
+button.next {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
-    border: none;
-    padding: 10px;
+    border: 5px solid rgba(0, 0, 0, 0.2);
+    width: 50px;
+    height: 50px;
+    padding: 0;
     cursor: pointer;
     border-radius: 50%;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 button.prev {
-    left: 10px;
+    left: 1%;
 }
 
 button.next {
-    right: 10px;
+    right: 1%;
+}
+
+@media (max-width: 768px) {
+    .slider-container {
+        max-width: 100%;
+        padding: 0 10px;
+    }
+
+    .slider {
+        height: 40vh;
+    }
+
+    .description {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .slider {
+        height: 30vh;
+    }
+
+    button.prev,
+    button.next {
+        padding: 5px;
+    }
 }
