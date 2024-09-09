@@ -7,10 +7,19 @@ export default function Login() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
+    function validateEmail(email) {
+        const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+        return re.test(String(email).toLowerCase())
+    }
+
     function handleSubmit(e) {
         e.preventDefault()
-        if(!email || !password) {
+        if (!email || !password) {
             return alert('Preencha todos os campos')
+        }
+
+        if (!validateEmail(email)) {
+            return alert('Por favor, insira um e-mail válido')
         }
 
         const user = {

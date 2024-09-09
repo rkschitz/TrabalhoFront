@@ -10,8 +10,6 @@ export default function Header() {
         window.location.href = '/login';
     }
 
-
-
     return (
         <div className='header-container'>
             <header>
@@ -39,10 +37,10 @@ export default function Header() {
                         <li>AmericanShortHair</li>
                     </Link>
                     <Link to="/allCats">
-                        <li>allCats</li>
+                        <li>Todos os Gatos</li>
                     </Link>
                     <Link to="/breedNotListed">
-                        <li>Buscar racas não listadas</li>
+                        <li>Buscar raças não listadas</li>
                     </Link>
                 </ul>
             </nav>

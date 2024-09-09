@@ -66,9 +66,9 @@ export default function Card({ breed, limit }) {
     if (error) return <p>{error}</p>;
 
     return (
-        <>
+        <div className="container-geral">
             <div className="slider-container">
-                <h1>Gatos da raça {searchBreed} </h1>
+                <h1 className="title">Gatos da raça {searchBreed} </h1>
                 <div className="slider">
                     {cats.map((cat, index) => (
                         <div
@@ -76,7 +76,7 @@ export default function Card({ breed, limit }) {
                             className={`slide ${index === currentSlide ? 'active' : ''}`}
                         >
                             {index === currentSlide && (
-                                <img
+                                <img className='image'
                                     src={cat.url}
                                     alt="Gato"
                                     style={{ width: '400px', height: '400px', objectFit: 'cover' }}
@@ -95,6 +95,6 @@ export default function Card({ breed, limit }) {
                 <p><strong>Temperamento:</strong> {cats[0].breeds[0].temperament}</p>
                 <a href={cats[0].breeds[0].wikipedia_url} target="_blank" rel="noreferrer">Saiba mais</a>
             </div>
-        </>
+        </div>
     );
 }
