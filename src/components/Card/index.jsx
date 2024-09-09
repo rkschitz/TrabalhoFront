@@ -1,13 +1,24 @@
 import { useState, useEffect } from 'react';
 import './styles.css';
 
+async function translateText(text, targetLang = 'pt') {
+    try {
+        const response = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=en|${targetLang}`);
+        const data = await response.json();
+        return data.responseData.translatedText;
+    } catch (error) {
+        console.error('Erro ao traduzir:', error);
+        return text;
+    }
+}
+
 export default function Card({ breed, limit }) {
+
     const [cats, setCats] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
     const [currentSlide, setCurrentSlide] = useState(0);
     const [searchBreed, setSearchBreed] = useState('');
-
 
     async function searchCats() {
         try {
@@ -16,7 +27,7 @@ export default function Card({ breed, limit }) {
                     'x-api-key': 'live_VjHmZzGkhlngtKfw0wW7FlAjrHWNtwQIo1LYie3su2otT1tLJPYF6nVOEmlj2dt7'
                 },
                 params: {
-                    has_breeds : 1
+                    has_breeds: 1
                 }
             });
 
@@ -26,6 +37,11 @@ export default function Card({ breed, limit }) {
 
             const data = await response.json();
             setSearchBreed(data[0].breeds[0].name);
+
+            const translatedTemperament = await translateText(data[0].breeds[0].temperament);
+            const translatedOrigin = await translateText(data[0].breeds[0].origin);
+            data[0].breeds[0].temperament = translatedTemperament;
+            data[0].breeds[0].origin = translatedOrigin;
             setCats(data);
         } catch (err) {
             setError('Ocorreu um erro ao buscar os gatos.');
