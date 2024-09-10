@@ -1,9 +1,6 @@
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
 import './styles.css'
-import { useEffect } from 'react';
 import logo from "../../assets/images/logo.png";
-// <source />;
 
 export default function Header() {
 
@@ -13,6 +10,7 @@ export default function Header() {
     }
 
     return (
+        
         <div className='header-container'>
             <header>
                 <Link to="/"><img src={logo} alt="Logo" className="header-logo" />
