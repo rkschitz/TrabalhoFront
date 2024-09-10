@@ -67,7 +67,6 @@ export default function Card({ breed, limit }) {
 
     return (
         <div className="container-geral">
-            {/* <h1 className="title">Gatos da raça {searchBreed} </h1> */}
             <div className="slider-container">
                 <div className="slider">
                     {cats.map((cat, index) => (

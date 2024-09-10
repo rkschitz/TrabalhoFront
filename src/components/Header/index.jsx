@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import './styles.css'
 import { useEffect } from 'react';
+import logo from "../../assets/images/logo.png";
+<source />;
 
 export default function Header() {
 
@@ -13,37 +15,37 @@ export default function Header() {
     return (
         <div className='header-container'>
             <header>
-                <h1>🐈 Buscador de gatos por raça 🐈</h1>
-                <Link className='user-button' to="/login" onClick={logOut}>SAIR</Link >
+                <Link to="/"><img src={logo} alt="Logo" className="header-logo" />
+                </Link>
+                <nav className="menu">
+                    <ul>
+                        <Link to="/">
+                            <li>HOME</li>
+                        </Link>
+                        <Link to="/americanBobtails">
+                            <li>AMERICAN BOBTAILS</li>
+                        </Link>
+                        <Link to="/abyssinian">
+                            <li>ABYSSINIAN</li>
+                        </Link>
+                        <Link to="/americanWirehair">
+                            <li>AEGEAN </li>
+                        </Link>
+                        <Link to="/americanCurly">
+                            <li>AMERICAN-CURLY</li>
+                        </Link>
+                        <Link to="/americanShortHair">
+                            <li>AMERICAN-SHORT-HAIR</li>
+                        </Link>
+                        <Link to="/breedNotListed">
+                            <li>RAÇAS NÃO LISTADAS</li>
+                        </Link>
+                        <Link className='user-button' to="/login"
+                            onClick={logOut}><li>SAIR</li>
+                        </Link >
+                    </ul>
+                </nav>
             </header>
-            <nav className="menu">
-                <ul>
-                    <Link to="/">
-                        <li>Home</li>
-                    </Link>
-                    <Link to="/americanBobtails">
-                        <li>American Bobtails</li>
-                    </Link>
-                    <Link to="/abyssinian">
-                        <li>Abyssinian</li>
-                    </Link>
-                    <Link to="/americanWirehair">
-                        <li>Aegen</li>
-                    </Link>
-                    <Link to="/americanCurly">
-                        <li>americanCurly</li>
-                    </Link>
-                    <Link to="/americanShortHair">
-                        <li>AmericanShortHair</li>
-                    </Link>
-                    <Link to="/allCats">
-                        <li>Todos os Gatos</li>
-                    </Link>
-                    <Link to="/breedNotListed">
-                        <li>Buscar raças não listadas</li>
-                    </Link>
-                </ul>
-            </nav>
         </div>
     )
 }
