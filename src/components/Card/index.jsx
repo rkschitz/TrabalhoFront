@@ -67,8 +67,8 @@ export default function Card({ breed, limit }) {
 
     return (
         <div className="container-geral">
+            {/* <h1 className="title">Gatos da raça {searchBreed} </h1> */}
             <div className="slider-container">
-                <h1 className="title">Gatos da raça {searchBreed} </h1>
                 <div className="slider">
                     {cats.map((cat, index) => (
                         <div
@@ -93,7 +93,9 @@ export default function Card({ breed, limit }) {
                 <p><strong>Origem:</strong> {cats[0].breeds[0].origin}</p>
                 <p><strong>Expectativa de vida:</strong> {cats[0].breeds[0].life_span} anos</p>
                 <p><strong>Temperamento:</strong> {cats[0].breeds[0].temperament}</p>
-                <a href={cats[0].breeds[0].wikipedia_url} target="_blank" rel="noreferrer">Saiba mais</a>
+                <div className="see-more">
+                    <a href={cats[0].breeds[0].wikipedia_url} target="_blank" rel="noreferrer">Saiba mais</a>
+                </div>
             </div>
         </div>
     );

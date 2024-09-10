@@ -83,15 +83,17 @@ export default function BreedNotListed() {
 
     return (
         <div className="breedNotListed">
-            <select onChange={(e) => setBreed(e.target.value)} >
-                <option disabled hidden value={'A'} selected>Escolha</option>
-                {racas.map((item) => (
-                    <option key={item.id} value={item.id}>
-                        {item.name}
-                    </option>
-                ))}
-            </select>
-            <button onClick={search}>AAA</button>
+            <div className="search">
+                <select onChange={(e) => setBreed(e.target.value)} >
+                    <option disabled hidden value={'A'} selected>Escolha</option>
+                    {racas.map((item) => (
+                        <option key={item.id} value={item.id}>
+                            {item.name}
+                        </option>
+                    ))}
+                </select>
+                <button onClick={search}>BUSCAR</button>
+            </div>
             <Card
                 breed={breed}
                 limit={100}
