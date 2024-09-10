@@ -17,7 +17,7 @@ function App() {
   const user = localStorage.getItem('user');
 
   return (
-    <div className="estrutura">
+    <>
       {user ? <Header /> : null}
       <div className='content'>
         <Routes>
@@ -38,7 +38,7 @@ function App() {
         </Routes>
       </div>
       {user ? <Footer /> : null}
-    </div>
+    </>
   )
 }
 
