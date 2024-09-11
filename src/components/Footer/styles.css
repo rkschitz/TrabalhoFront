@@ -1,0 +1,32 @@
+.footer-container {
+    background-color: var(--var-bg-footer);
+    color: var(--var-text-footer);
+    padding: 5px;
+    text-align: center;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.footer-nav a {
+    color: var(--var-link-color);
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+}
+
+.footer-nav a:hover {
+    text-decoration: underline;
+    color: var(--var-link-hover-color);
+}
+
+@media (max-width: 768px) {
+    .footer-nav {
+        margin-top: 10px;
+    }
+
+    .footer-nav a {
+        display: block;
+        margin: 5px 0;
+    }
+}
