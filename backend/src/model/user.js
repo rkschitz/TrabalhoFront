@@ -20,7 +20,8 @@ class User {
       },
       role:{
           type: database.db.Sequelize.ENUM('admin', 'viewer'),
-          allowNull: false
+          allowNull: false,
+          defaultValue: 'viewer'
       }
     });
   }

@@ -1,11 +1,11 @@
 const express = require("express");
 const cors = require("cors");
-const database = require("./config/database");
+const database = require("./src/config/database");
 
-const UserApi = require("./api/user");
-const UserRouter = require("./routes/user");
-const CharacterRouter = require("./routes/character");
-const authMiddleware = require("./middleware/authMiddleware");
+const UserApi = require("./src/api/user");
+const UserRouter = require("./src/routes/user");
+const BreedRouter = require("./src/routes/breed");
+const authMiddleware = require("./src/middleware/auth");
 
 const app = express();
 app.use(express.json());
@@ -19,8 +19,8 @@ app.get("/", (req, res) => {
 app.post("/api/v1/login", UserApi.login);
 app.post("/api/v1/user", UserApi.createUser);
 
-app.use("/api/v1/user", authMiddleware, UserRouter);
-app.use("/api/v1/character", CharacterRouter);
+app.use("/api/v1/user", authMiddleware(["admin"]), UserRouter);
+app.use("/api/v1/breed", BreedRouter)
 
 database.db
   .sync({ force: false })

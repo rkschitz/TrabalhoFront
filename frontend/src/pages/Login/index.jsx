@@ -1,11 +1,16 @@
 import { Link } from 'react-router-dom'
-import { useState } from 'react'
+import { useContext,useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { AuthContext } from '../../Context'
 import './styles.css'
+
 
 export default function Login() {
 
+    const { login } = useContext(AuthContext);
+    const navigate = useNavigate();
     const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+    const [senha, setSenha] = useState('')
 
     function validateEmail(email) {
         const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
@@ -14,7 +19,7 @@ export default function Login() {
 
     function handleSubmit(e) {
         e.preventDefault()
-        if (!email || !password) {
+        if (!email || !senha) {
             return alert('Preencha todos os campos')
         }
 
@@ -22,12 +27,24 @@ export default function Login() {
             return alert('Por favor, insira um e-mail válido')
         }
 
-        const user = {
-            email
+        const responseApi = fetch('http://localhost:3000/api/v1/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email, senha })
+        })
+
+        if (!responseApi.ok) {
+            return alert('Erro ao fazer login')
         }
 
-        localStorage.setItem('user', JSON.stringify(user))
-        window.location.href = '/'
+        const response = responseApi.json()
+
+        if (response.token) {
+            login(response.token)
+            navigate('/')
+        }
     }
 
     return (
@@ -45,9 +62,9 @@ export default function Login() {
                 <div className='div-input'>
                     <label>Senha:</label>
                     <input
-                        type='password'
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        type='senha'
+                        value={senha}
+                        onChange={(e) => setSenha(e.target.value)}
                     />
                 </div>
                 <Link to='/register'>Não tem cadastro? Cadastre-se aqui</Link>
