@@ -11,19 +11,30 @@ import AmericanShortHair from './pages/AmericanShortHair';
 import BreedNotListed from './pages/BreedNotListed';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import { AuthProvider } from './Context';
+import PrivateRoute from './components/PrivateRoute';
+import React,{ useEffect } from 'react';
 
 function App() {
 
-  const user = localStorage.getItem('user');
+  const [user, setUser] = React.useState(null)
+
+  useEffect(() => {
+    let token = localStorage.getItem('token')
+    if (user) {
+      setUser(token)
+    } else {
+      console.log('Usuário não logado')
+    }
+  }, [])
 
   return (
     <div className="estrutura">
-      {user ? <Header /> : null}
+      <AuthProvider>
+      {user ? <Header /> : null}s
       <div className='content'>
         <Routes>
-          <Route path="/register" element={<Register />} />
-          {user ? (
-            <>
+              <Route element={<PrivateRoute />}>
               <Route path="/" element={<Home />} />
               <Route path="/americanBobtails" element={<AmericanBobtail />} />
               <Route path="/abyssinian" element={<Abyssinian />} />
@@ -31,13 +42,13 @@ function App() {
               <Route path="/americanCurly" element={<AmericanCurly />} />
               <Route path="/americanShortHair" element={<AmericanShortHair />} />
               <Route path="/breedNotListed" element={<BreedNotListed />} />
-            </>
-          ) : (
-            <Route path="*" element={<Login />} />
-          )}
+              </Route>
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
         </Routes>
       </div>
       {user ? <Footer /> : null}
+      </AuthProvider>
     </div>
   )
 }
