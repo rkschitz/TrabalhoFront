@@ -4,7 +4,7 @@ class Breed {
     constructor() {
         this.model = database.db.define("breeds", {
             breedId: {
-                type: database.db.Sequelize.STRING,
+                type: database.db.Sequelize.INTEGER,
                 primaryKey: true
             },
             name: {

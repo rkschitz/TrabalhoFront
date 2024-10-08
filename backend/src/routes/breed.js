@@ -3,11 +3,11 @@ const BreedApi = require('../api/breed');
 const router = express.Router();
 const authMiddleware = require('../middleware/auth');
 
-router.post('/breed', authMiddleware(['admin']), BreedApi.createBreed);
-router.put('/breed', authMiddleware(['admin']), BreedApi.updateBreed);
-router.delete('/breed', authMiddleware(['admin']), BreedApi.deleteBreed);
-
-router.get('/breed', authMiddleware(), BreedApi.findBreed);
-router.get('/breeds', authMiddleware(), BreedApi.listBreeds);
+router.get('/', authMiddleware(['admin']), BreedApi.getApiBreeds);
+router.post('/', authMiddleware(['admin']), BreedApi.createBreed);
+router.put('/:breedId', authMiddleware(['admin']), BreedApi.updateBreed);
+router.delete('/:breedId', authMiddleware(['admin']), BreedApi.deleteBreed);
+router.get('/:breedId', authMiddleware(), BreedApi.findBreed);
+router.get('/', authMiddleware(), BreedApi.listBreeds);
 
 module.exports = router;

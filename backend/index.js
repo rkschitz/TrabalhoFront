@@ -1,7 +1,6 @@
 const express = require("express");
 const cors = require("cors");
 const database = require("./src/config/database");
-
 const UserApi = require("./src/api/user");
 const UserRouter = require("./src/routes/user");
 const BreedRouter = require("./src/routes/breed");
@@ -23,20 +22,20 @@ app.post("/api/v1/user", UserApi.createUser);
 app.use("/api/v1/user", UserRouter);
 app.use("/api/v1/breed", BreedRouter);
 
-// Função para criar as tabelas na ordem correta
+
 const createTables = async () => {
   try {
-    await database.db.sync({ force: false }); // Aqui você pode forçar a sincronização se necessário
+    await database.db.sync({ force: false }); 
     await User.sync();
     await Breed.sync();
     const adminData = {
-      nome: 'admin', // Nome do administrador
-      email: 'admin', // Email do administrador
-      senha: 'admin', // Senha
-      role: 'admin' // Papel de administrador
+      nome: 'admin', 
+      email: 'admin', 
+      senha: 'admin', 
+      role: 'admin' 
     };
 
-    // Cria o usuário administrador
+    
     await User.create(adminData);
     console.log("Todas as tabelas foram criadas com sucesso!");
   } catch (error) {

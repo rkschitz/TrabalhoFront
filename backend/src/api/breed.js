@@ -2,9 +2,19 @@ const BreedController = require('../controller/breed');
 
 class BreedApi {
     async createBreed(req, res) {
-        const { id, name, weight, life_span, origin, temperament, image } = req.body;
+        const {name, weight, life_span, origin, temperament, image } = req.body;
         try {
-            const response = await BreedController.createBreed(id, name, weight, life_span, origin, temperament, image);
+            const response = await BreedController.createBreed(name, weight, life_span, origin, temperament, image);
+            return res.status(201).send(response);
+        } catch (error) {
+            return res.status(400).send({ error: `Erro ao criar raça ${error.message}` });
+        }
+    }
+
+    async getApiBreeds(req, res) {
+        const {name, weight, life_span, origin, temperament, image } = req.body;
+        try {
+            const response = await BreedController.getApiBreeds(name, weight, life_span, origin, temperament, image);
             return res.status(201).send(response);
         } catch (error) {
             return res.status(400).send({ error: `Erro ao criar raça ${error.message}` });
@@ -12,9 +22,9 @@ class BreedApi {
     }
 
     async updateBreed(req, res) {
-        const { id, breed, weight, height, origin, temperament, image } = req.body;
+        const { breedId, breed, weight, height, origin, temperament, image } = req.body;
         try {
-            const response = await BreedController.update(id, breed, weight, height, temperament, origin, image);
+            const response = await BreedController.update(breedId, breed, weight, height, temperament, origin, image);
             return res.status(200).send(response);
         } catch (error) {
             return res.status(400).send({ error: `Erro ao atualizar raça ${error.message}` });
@@ -22,9 +32,9 @@ class BreedApi {
     }
 
     async deleteBreed(req, res) {
-        const { id } = req.body;
+        const { breedId } = req.params;
         try {
-            const response = await BreedController.delete(id);
+            const response = await BreedController.delete(breedId);
             return res.status(200).send(response);
         } catch (error) {
             return res.status(400).send({ error: `Erro ao deletar raça ${error.message}` });
@@ -32,9 +42,9 @@ class BreedApi {
     }
 
     async findBreed(req, res) {
-        const { id } = req.body;
+        const { breedId } = req.params;
         try {
-            const response = await BreedController.find(id);
+            const response = await BreedController.find(breedId);
             return res.status(200).send(response);
         } catch (error) {
             return res.status(400).send({ error: `Erro ao buscar raça ${error.message}` });
