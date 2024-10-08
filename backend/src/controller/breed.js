@@ -1,34 +1,52 @@
 const breedModel = require("../model/breed");
-const imageControler = require("../controller/image");
-const breedImageController = require("../model/breed_image");
 
 class BreedController{
-    async createBreed(id,breed, weight, height, origin,[...temperament],[...image]){
-        
-        const imagens = [];
+    async createBreed(breedId,name, weight, life_span, origin,[...temperament],[...image]){
 
+        const newBreed = {
+            breedId,
+            name,
+            weight: weight.metric,
+            life_span,
+            origin,
+            temperament: temperament[0],
+            image: image[0]
+        }
+        console.log(newBreed)
+        const responseBreed = await breedModel.create(
+            newBreed
+        );
 
-        const responseBreed = await breedModel.create({
-            id,
-            breed,
-            weight,
-            height,
-            origin
-        });
+        return responseBreed;
+    }
 
-        image.forEach(async (element) => {
-            const respondeImage = await imageControler.createImage(element);
-            imagens.push(respondeImage.id);
-        })
-
-        if (imagens.length > 0){
-            await breedImageController.create({
-                breed: responseBreed.id,
-                image: imagens
-            })
+    async update(breedId,name, weight, life_span, origin,[...temperament],[...image]){
+        const response = await breedModel.findOne({where: {breedId}});
+        if(!response){
+            return undefined;
         }
 
+        const newBreed = {
+            name,
+            weight: weight.metric,
+            life_span,
+            origin,
+            temperament: temperament[0],
+            image: image[0]
+        }
 
+        const responseBreed = await breedModel.update(newBreed,{where: {breedId}});
+        
+        return responseBreed;
+    }
+
+    async delete(id){
+        const response = await breedModel.findOne({where: {id}});
+        if(!response){
+            return undefined;
+        }
+
+        const responseBreed = await breedModel.destroy({where: {id}});
         return responseBreed;
     }
 }

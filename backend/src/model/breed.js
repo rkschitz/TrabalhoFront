@@ -7,13 +7,22 @@ class Breed {
                 type: database.db.Sequelize.STRING,
                 primaryKey: true
             },
-            breed: {
+            name: {
                 type: database.db.Sequelize.STRING,
             },
             weight: {
                 type: database.db.Sequelize.STRING,
             },
-            height: {
+            life_span: {
+                type: database.db.Sequelize.STRING,
+            },
+            origin: {
+                type: database.db.Sequelize.STRING,
+            },
+            temperament: {
+                type: database.db.Sequelize.STRING,
+            },
+            image: {
                 type: database.db.Sequelize.STRING,
             }
         });

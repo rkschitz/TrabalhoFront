@@ -4,7 +4,7 @@ const user = require('../controller/user')
 function authMiddleware(roles = []) {
   return (req, res, next) => {
     const token = req.headers["authorization"];
-
+    
     if (!token) {
       return res.status(400).json({ mensagem: "Token não fornecido" });
     }
@@ -20,7 +20,8 @@ function authMiddleware(roles = []) {
         if(!userLogged) {
           return res.status(404).json({ mensagem: "Usuário não encontrado" });
         }
-        if(roles.length && !roles.includes(userLogged.permissao)){
+        
+        if(roles.length && !roles.includes(userLogged.dataValues.role)){
           return res.status(403).json({ mensagem: "Sem permissão" });
         }
 
