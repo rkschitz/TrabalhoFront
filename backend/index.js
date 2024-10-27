@@ -4,7 +4,6 @@ const database = require("./src/config/database");
 const UserApi = require("./src/api/user");
 const UserRouter = require("./src/routes/user");
 const BreedRouter = require("./src/routes/breed");
-const authMiddleware = require("./src/middleware/auth");
 const User = require("./src/model/user");
 const Breed = require("./src/model/breed");
 
@@ -25,9 +24,10 @@ app.use("/api/v1/breed", BreedRouter);
 
 const createTables = async () => {
   try {
-    await database.db.sync({ force: false }); 
+    await database.db.sync({ force: true }); 
     await User.sync();
     await Breed.sync();
+    
     const adminData = {
       nome: 'admin', 
       email: 'admin', 

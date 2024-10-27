@@ -1,16 +1,21 @@
 import { Link } from 'react-router-dom';
 import './styles.css'
 import logo from "../../assets/images/logo.png";
+import LogoutButton from '../Logout';
+import { useContext } from 'react';
+import { AuthContext } from '../../auth/Context';
 
 export default function Header() {
 
-    function logOut() {
-        localStorage.removeItem('user');
-        window.location.href = '/login';
+    const { token, role } = useContext(AuthContext);
+
+    const toggleMenu = () => {
+        const menu = document.querySelector('.menu');
+        menu.classList.toggle('active');
     }
 
     return (
-        
+
         <div className='header-container'>
             <header>
                 <Link to="/"><img src={logo} alt="Logo" className="header-logo" />
@@ -38,11 +43,20 @@ export default function Header() {
                         <Link to="/breedNotListed">
                             <li>RAÇAS NÃO LISTADAS</li>
                         </Link>
-                        <Link className='user-button' to="/login"
-                            onClick={logOut}><li>SAIR</li>
-                        </Link >
+
+                        <div className="menu-toggle" onClick={toggleMenu}>
+                            <div className="bar"></div>
+                            <div className="bar"></div>
+                            <div className="bar"></div>
+                        </div>
+                        {/* {token && <LogoutButton />}
+                        {token && <Link to="/profile">Perfil</Link>}
+                        {role === 'admin' && <Link to="/users">Gerenciar usuários</Link>} */}
                     </ul>
                 </nav>
+
+
+
             </header>
         </div>
     )

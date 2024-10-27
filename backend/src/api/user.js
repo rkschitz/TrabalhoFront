@@ -104,9 +104,9 @@ class UserApi {
         try {
             const token = await UserController.login(email, senha)
 
-            res.status(200).send({ token })
+           return res.status(200).send({ token })
         } catch (e) {
-            res.status(400).send({ error: e.message })
+           return res.status(400).send({ error: e.message })
         }
     }
 }
