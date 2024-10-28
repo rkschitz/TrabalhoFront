@@ -1,8 +1,12 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { getBreeds } from "../../api/breed";
+import { favoriteBreed } from "../../api/userBreed";
+import { AuthContext } from '../../auth/Context'
 
 export default function BreedFeed() {
     const [breeds, setBreeds] = useState([]);
+
+    const {id} = useContext(AuthContext)
 
     const getBreed = async () => {
         try {
@@ -13,8 +17,13 @@ export default function BreedFeed() {
         }
     };
 
-    const addFavorites = (id) => async () => {
-        console.log(id);
+    const addFavorites = (breedId) => async () => {
+        try{
+            const response = await favoriteBreed(id, breedId, false);
+            console.log(response);
+        }catch (error) {
+            console.error("Erro ao favoritar a raça:", error);
+        }
     }
 
     useEffect(() => {

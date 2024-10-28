@@ -1,13 +1,15 @@
 const userBreedModel = require('../model/userBreed');
 
 class UserBreedController{
-    async createUserBreed(userId, breedId){
-        if(!userId || !breedId){
+    async createUserBreed(userId, breedId, isCreated){
+        if(!userId || !breedId || isCreated === undefined){
+            console.log(userId, breedId, isCreated)
             throw new Error("userId e breedId são obrigatórios.");
         }
         const newUserBreed = {
             userId,
-            breedId
+            breedId,
+            isCreated
         }
         const responseUserBreed = await userBreedModel.create(newUserBreed);
         return responseUserBreed;

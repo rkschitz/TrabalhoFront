@@ -16,7 +16,7 @@ class UserBreed {
         }
       },
         breedId: {
-            type: database.db.Sequelize.INTEGER,
+            type: database.db.Sequelize.STRING,
             references: {
             model: 'breeds',
             key: 'breedId'
