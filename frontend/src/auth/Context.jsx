@@ -1,9 +1,7 @@
-/* eslint-disable react/prop-types */
 import { createContext, useState, useEffect } from 'react';
 import { jwtDecode } from 'jwt-decode';
 import { Navigate } from 'react-router-dom';
 
-// 4 - Adicionar Provider, isTokenValid e getRole
 const isTokenValid = (token) => {
   try {
     const decoded = jwtDecode(token);
@@ -24,21 +22,33 @@ const getRole = (token) => {
   }
 };
 
+const getId = (token) => {
+  try {
+    const decoded = jwtDecode(token);
+    return decoded.id
+  } catch (error) {
+    return false;
+  }
+}
+
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(null);
   const [role, setRole] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [id, setId] = useState(null);
 
   useEffect(() => {
     const storedToken = localStorage.getItem('token');
     if (storedToken && isTokenValid(storedToken)) {
       setToken(storedToken);
       setRole(getRole(storedToken));
+      setId(getId(storedToken));
     } else {
       setToken(null);
       setRole(null);
+      setId(null);
       localStorage.removeItem('token');
     }
     setLoading(false);
@@ -47,12 +57,14 @@ export const AuthProvider = ({ children }) => {
   const login = (newToken) => {
     setToken(newToken);
     setRole(getRole(newToken));
+    setId(getId(newToken));
     localStorage.setItem('token', newToken);
   };
 
   const logout = () => {
     setToken(null);
     setRole(null);
+    setId(null);
     localStorage.removeItem('token');
     Navigate('/login');
   };
@@ -62,7 +74,7 @@ export const AuthProvider = ({ children }) => {
   }
 
   return (
-    <AuthContext.Provider value={{ token, login, logout, role }}>
+    <AuthContext.Provider value={{ token, login, logout, role, id }}>
       {children}
     </AuthContext.Provider>
   );

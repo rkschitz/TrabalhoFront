@@ -1,7 +1,5 @@
 import api from './api';
 
-// 3² - Criar funções para consumir a API
-
 export const getUsers = async () => {
   const response = await api.get('/api/v1/users');
   return response.data;
@@ -38,3 +36,8 @@ export const loginUser = async (email, senha) => {
   });
   return response;
 };
+
+export const getUserBreeds = async (id) => {
+  const response = await api.get(`/api/v1/user/${id}/breeds`);
+  return response;
+}

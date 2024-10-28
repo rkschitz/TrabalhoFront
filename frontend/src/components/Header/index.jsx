@@ -25,7 +25,7 @@ export default function Header() {
                         <Link to="/">
                             <li>HOME</li>
                         </Link>
-                        <Link to="/americanBobtails">
+                        {/* <Link to="/americanBobtails">
                             <li>AMERICAN BOBTAILS</li>
                         </Link>
                         <Link to="/abyssinian">
@@ -42,16 +42,18 @@ export default function Header() {
                         </Link>
                         <Link to="/breedNotListed">
                             <li>RAÇAS NÃO LISTADAS</li>
-                        </Link>
+                        </Link> */}
+                        <Link to="/favorites"><li>Favoritos</li></Link>
+                        <Link to="/feed"><li>Feed</li></Link>
 
-                        <div className="menu-toggle" onClick={toggleMenu}>
+                        {/* <div className="menu-toggle" onClick={toggleMenu}>
                             <div className="bar"></div>
                             <div className="bar"></div>
                             <div className="bar"></div>
-                        </div>
-                        {/* {token && <LogoutButton />}
+                        </div> */}
+                         {token && <LogoutButton />}
                         {token && <Link to="/profile">Perfil</Link>}
-                        {role === 'admin' && <Link to="/users">Gerenciar usuários</Link>} */}
+                        {role === 'admin' && <Link to="/users">Gerenciar usuários</Link>} 
                     </ul>
                 </nav>
 
