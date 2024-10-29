@@ -1,10 +1,21 @@
 import api from './api';
 
 export const getBreeds = async () => {
-  const response = await api.get(`https://api.thecatapi.com/v1/images/search?limit=3`, {
-    headers: {
-        'x-api-key': 'live_VjHmZzGkhlngtKfw0wW7FlAjrHWNtwQIo1LYie3su2otT1tLJPYF6nVOEmlj2dt7'
-    }
-});
+  const response = await api.get('/api/v1/breed');
   return response.data;
 };
+
+export const alimentBreed = async () => {
+  const response = await api.get('/api/v1/breed/aliment');
+  return response;
+}
+
+export const getBreedById = async (id) => {
+  const response = await api.get(`/api/v1/breed/${id}`);
+  return response.data;
+}
+
+export const createBreed = async (breed) => {
+  const response = await api.post('/api/v1/breed', breed);
+  return response.data;
+}

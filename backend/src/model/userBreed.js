@@ -15,14 +15,14 @@ class UserBreed {
           key: 'id'
         }
       },
-        breedId: {
-            type: database.db.Sequelize.STRING,
-            references: {
-            model: 'breeds',
-            key: 'breedId'
-            }
-    },
-     isCreated: {
+      breedId: {
+        type: database.db.Sequelize.STRING,
+        references: {
+          model: 'breeds',
+          key: 'breedId'
+        }
+      },
+      isCreated: {
         type: database.db.Sequelize.BOOLEAN,
         allowNull: false
       }

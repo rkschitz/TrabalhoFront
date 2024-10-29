@@ -13,4 +13,5 @@ router.delete("/:id", authMiddleware(), UserApi.deleteUser);
 router.post("/admin", authMiddleware(['admin']), UserApi.createUser);
 router.get("/:id/breeds", authMiddleware(), UserBreedApi.listUserBreedsByUser);
 
+
 module.exports = router;

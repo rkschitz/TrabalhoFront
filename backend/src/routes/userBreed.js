@@ -5,6 +5,7 @@ const authMiddleware = require('../middleware/auth');
 
 router.post('/',authMiddleware(), UserBreedApi.createUserBreed);
 router.put('/:userBreedId',authMiddleware(), UserBreedApi.updateUserBreed);
-router.delete('/:userBreedId',authMiddleware(), UserBreedApi.deleteUserBreed);
+router.delete('/unfavorite/:id',authMiddleware(), UserBreedApi.deleteUserBreed);
+router.get('/',authMiddleware(), UserBreedApi.findAll);
 
 module.exports = router;

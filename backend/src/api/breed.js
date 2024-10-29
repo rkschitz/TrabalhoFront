@@ -12,9 +12,8 @@ class BreedApi {
     }
 
     async getApiBreeds(req, res) {
-        const {name, weight, life_span, origin, temperament, image } = req.body;
         try {
-            const response = await BreedController.getApiBreeds(name, weight, life_span, origin, temperament, image);
+            const response = await BreedController.getApiBreeds();
             return res.status(201).send(response);
         } catch (error) {
             return res.status(400).send({ error: `Erro ao criar raça ${error.message}` });

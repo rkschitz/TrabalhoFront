@@ -12,6 +12,16 @@ class UserBreedApi{
             res.status(400).json({ message: error.message });
         }
     }
+    
+
+    async findAll(req, res){
+        try {
+            const userBreeds = await UserBreedController.findAll();
+            res.status(200).json(userBreeds);
+        } catch (error) {
+            res.status(400).json({ message: error.message });
+        }
+    }
 
     async findUserBreed(req, res){
         const { id } = req.params;
@@ -36,6 +46,7 @@ class UserBreedApi{
 
     async deleteUserBreed(req, res){
         const { id } = req.params;
+        
         try {
             await UserBreedController.deleteUserBreed(id);
             res.status(204).end();
@@ -55,17 +66,12 @@ class UserBreedApi{
 
     async listUserBreedsByUser(req, res){
         const { id } = req.params;
-        console.log(req)
         try {
             const userBreeds = await UserBreedController.listUserBreedsByUser(id);
             res.status(200).json(userBreeds);
         } catch (error) {
             res.status(400).json({ message: error.message });
         }
-    }
-
-    async listUserBreedsFavorites(req,res){
-
     }
 
     async listUserBreedsByBreed(req, res){
