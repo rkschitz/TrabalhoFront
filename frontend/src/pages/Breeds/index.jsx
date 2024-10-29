@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { getBreeds, alimentBreed } from "../../api/breed";
 import { favoriteBreed } from "../../api/userBreed";
 import { AuthContext } from '../../auth/Context'
+import './styles.css';
 
 export default function BreedFeed() {
     const [breeds, setBreeds] = useState([]); // Inicializa breeds como array vazio

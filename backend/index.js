@@ -30,9 +30,6 @@ const createTables = async () => {
   try {
   
     await database.db.sync({ force: false  }); 
-    // await User.sync();
-    // await Breed.sync();
-    // await UserBreed.sync();
     
     const adminData = {
       nome: 'admin', 
