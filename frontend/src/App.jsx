@@ -16,6 +16,8 @@ import PrivateRoute from './components/PrivateRoute';
 import React, { useEffect } from 'react';
 import Layout from './components/Layout/index';
 import Profile from './pages/Profile';
+import Favorites from './pages/Favorites';
+import BreedFeed from './pages/Breeds';
 
 function App() {
 
@@ -41,6 +43,8 @@ function App() {
             <Route path="/americanShortHair" element={<AmericanShortHair />} />
             <Route path="/breedNotListed" element={<BreedNotListed />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/favorites" element={<Favorites />}/>
+            <Route path="/feed" element={<BreedFeed />}/>
           </Route>
         </Route>
         {user ? '' : <Route path="/login" element={<Login />} />}

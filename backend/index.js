@@ -6,6 +6,9 @@ const UserRouter = require("./src/routes/user");
 const BreedRouter = require("./src/routes/breed");
 const User = require("./src/model/user");
 const Breed = require("./src/model/breed");
+const UserBreed = require("./src/model/userBreed");
+const UserBreedRouter = require("./src/routes/userBreed");
+require("./src/model/association");
 
 const app = express();
 app.use(express.json());
@@ -20,13 +23,13 @@ app.post("/api/v1/user", UserApi.createUser);
 
 app.use("/api/v1/user", UserRouter);
 app.use("/api/v1/breed", BreedRouter);
+app.use("/api/v1/userBreed", UserBreedRouter);
 
 
 const createTables = async () => {
   try {
-    await database.db.sync({ force: true }); 
-    await User.sync();
-    await Breed.sync();
+  
+    await database.db.sync({ force: false  }); 
     
     const adminData = {
       nome: 'admin', 

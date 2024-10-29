@@ -25,38 +25,12 @@ export default function Header() {
                         <Link to="/">
                             <li>HOME</li>
                         </Link>
-                        <Link to="/americanBobtails">
-                            <li>AMERICAN BOBTAILS</li>
-                        </Link>
-                        <Link to="/abyssinian">
-                            <li>ABYSSINIAN</li>
-                        </Link>
-                        <Link to="/americanWirehair">
-                            <li>AEGEAN </li>
-                        </Link>
-                        <Link to="/americanCurly">
-                            <li>AMERICAN-CURLY</li>
-                        </Link>
-                        <Link to="/americanShortHair">
-                            <li>AMERICAN-SHORT-HAIR</li>
-                        </Link>
-                        <Link to="/breedNotListed">
-                            <li>RAÇAS NÃO LISTADAS</li>
-                        </Link>
-
-                        <div className="menu-toggle" onClick={toggleMenu}>
-                            <div className="bar"></div>
-                            <div className="bar"></div>
-                            <div className="bar"></div>
-                        </div>
-                        {/* {token && <LogoutButton />}
+                        <Link to="/favorites"><li>Favoritos</li></Link>
+                        <Link to="/feed"><li>Feed</li></Link>
                         {token && <Link to="/profile">Perfil</Link>}
-                        {role === 'admin' && <Link to="/users">Gerenciar usuários</Link>} */}
+                        {token && <LogoutButton />}
                     </ul>
                 </nav>
-
-
-
             </header>
         </div>
     )
