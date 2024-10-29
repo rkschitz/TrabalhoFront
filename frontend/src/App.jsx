@@ -11,9 +11,13 @@ import AmericanShortHair from './pages/AmericanShortHair';
 import BreedNotListed from './pages/BreedNotListed';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import { AuthProvider } from './Context';
+import { AuthProvider } from './auth/Context';
 import PrivateRoute from './components/PrivateRoute';
-import React,{ useEffect } from 'react';
+import React, { useEffect } from 'react';
+import Layout from './components/Layout/index';
+import Profile from './pages/Profile';
+import Favorites from './pages/Favorites';
+import BreedFeed from './pages/Breeds';
 
 function App() {
 
@@ -21,35 +25,32 @@ function App() {
 
   useEffect(() => {
     let token = localStorage.getItem('token')
-    if (user) {
+    if (token) {
       setUser(token)
-    } else {
-      console.log('Usuário não logado')
     }
   }, [])
 
   return (
-    <div className="estrutura">
-      <AuthProvider>
-      {user ? <Header /> : null}s
-      <div className='content'>
-        <Routes>
-              <Route element={<PrivateRoute />}>
-              <Route path="/" element={<Home />} />
-              <Route path="/americanBobtails" element={<AmericanBobtail />} />
-              <Route path="/abyssinian" element={<Abyssinian />} />
-              <Route path="/americanWirehair" element={<AmericanWirehair />} />
-              <Route path="/americanCurly" element={<AmericanCurly />} />
-              <Route path="/americanShortHair" element={<AmericanShortHair />} />
-              <Route path="/breedNotListed" element={<BreedNotListed />} />
-              </Route>
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
-        </Routes>
-      </div>
-      {user ? <Footer /> : null}
-      </AuthProvider>
-    </div>
+    <AuthProvider>
+      <Routes>
+        <Route element={<PrivateRoute />}>
+          <Route element={<Layout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/americanBobtails" element={<AmericanBobtail />} />
+            <Route path="/abyssinian" element={<Abyssinian />} />
+            <Route path="/americanWirehair" element={<AmericanWirehair />} />
+            <Route path="/americanCurly" element={<AmericanCurly />} />
+            <Route path="/americanShortHair" element={<AmericanShortHair />} />
+            <Route path="/breedNotListed" element={<BreedNotListed />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/favorites" element={<Favorites />}/>
+            <Route path="/feed" element={<BreedFeed />}/>
+          </Route>
+        </Route>
+        {user ? '' : <Route path="/login" element={<Login />} />}
+        {user ? '' : <Route path="/register" element={<Register />} />}
+      </Routes>
+    </AuthProvider>
   )
 }
 

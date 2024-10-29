@@ -1,11 +1,15 @@
 import { useContext } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
-import { AuthContext } from '../../auth/Context';
+import { AuthContext } from '../auth/Context';
 
+// 5 - Adicionar PrivateRoute
 const PrivateRoute = () => {
   const { token } = useContext(AuthContext);
 
-  // Se estiver autenticado, renderiza o componente desejado, caso contrário, redireciona para o login
+  if (token === null) {
+    return <Navigate to="/login" />;
+  }
+
   return token ? <Outlet /> : <Navigate to="/login" />;
 };
 

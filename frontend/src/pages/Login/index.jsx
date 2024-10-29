@@ -1,51 +1,41 @@
 import { Link } from 'react-router-dom'
 import { useContext,useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { AuthContext } from '../../Context'
+import { AuthContext } from '../../auth/Context'
+import { loginUser } from '../../api/user'
 import './styles.css'
-
 
 export default function Login() {
 
     const { login } = useContext(AuthContext);
     const navigate = useNavigate();
-    const [email, setEmail] = useState('')
-    const [senha, setSenha] = useState('')
-
-    function validateEmail(email) {
-        const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-        return re.test(String(email).toLowerCase())
-    }
-
-    function handleSubmit(e) {
-        e.preventDefault()
-        if (!email || !senha) {
-            return alert('Preencha todos os campos')
-        }
-
-        if (!validateEmail(email)) {
-            return alert('Por favor, insira um e-mail válido')
-        }
-
-        const responseApi = fetch('http://localhost:3000/api/v1/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ email, senha })
-        })
-
-        if (!responseApi.ok) {
-            return alert('Erro ao fazer login')
-        }
-
-        const response = responseApi.json()
-
-        if (response.token) {
-            login(response.token)
-            navigate('/')
-        }
-    }
+  
+    const [email, setEmail] = useState('');
+    const [senha, setSenha] = useState('');
+  
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+  
+      if (!email || !senha) {
+          return toast('Informe o e-mail e a senha para continuar!');
+      }
+  
+      try {
+          const response = await loginUser(email, senha);
+          if (response.data.token) {
+              login(response.data.token);
+              return navigate('/');
+          }
+      } catch (error) {
+          if (error.response.status === 403) {
+            return toast("Sem permissão.");
+          }
+          if (error.response.status === 401 || error.response.status === 404) {
+            return toast('Email ou senha inválido, tente novamente!');
+          }
+          return toast('Erro inesperado, tente novamente mais tarde!');
+      }
+    };
 
     return (
         <div className='container'>
