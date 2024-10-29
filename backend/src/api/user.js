@@ -35,18 +35,16 @@ class UserApi {
                 return res.status(404).send({ error: "Usuário não encontrado" });
             }
     
-            // Se o usuário não for admin, só pode alterar a si mesmo
-            if (!userAdmin && currentUser.dataValues.id !== Number(id)) {
-                return res.status(403).send({ error: "Permissão negada" });
+            if (!userAdmin && currentUser.dataValues.id === Number(id) && role === "admin") {
+                return res.status(403).send({ error: "Permissão negada para alterar o papel para admin" });
             }
     
-            // Usuários não-admin não podem mudar seu próprio papel
             const newRole = userAdmin ? role : userToUpdate.dataValues.role;
     
             const updatedUser = await UserController.update(Number(id), nome, email, senha, newRole);
             return res.status(200).send(updatedUser);
         } catch (e) {
-            return res.status(400).send({ error: `Erro ao alterar usuário ${e.message}` });
+            return res.status(400).send({ error: `Erro ao alterar usuário: ${e.message}` });
         }
     }
     

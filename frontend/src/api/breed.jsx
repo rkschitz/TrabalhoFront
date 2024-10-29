@@ -16,6 +16,13 @@ export const getBreedById = async (id) => {
 }
 
 export const createBreed = async (breed) => {
+  console.log(breed)
   const response = await api.post('/api/v1/breed', breed);
+  return response.data;
+}
+
+export const updateBreed = async (breedId,breed) => {
+  console.log(breed)
+  const response = await api.put(`/api/v1/breed/${breedId}`, breed);
   return response.data;
 }

@@ -2,9 +2,10 @@ const BreedController = require('../controller/breed');
 
 class BreedApi {
     async createBreed(req, res) {
-        const {name, weight, life_span, origin, temperament, image } = req.body;
+        const {breedId, name, weight, life_span, origin, temperament, image } = req.body;
+        console.log(req.body)
         try {
-            const response = await BreedController.createBreed(name, weight, life_span, origin, temperament, image);
+            const response = await BreedController.createBreed(breedId, name, weight, life_span, origin, temperament, image);
             return res.status(201).send(response);
         } catch (error) {
             return res.status(400).send({ error: `Erro ao criar raça ${error.message}` });
@@ -21,7 +22,8 @@ class BreedApi {
     }
 
     async updateBreed(req, res) {
-        const { breedId, breed, weight, height, origin, temperament, image } = req.body;
+        const { breedId } = req.params;
+        const {breed, weight, height, origin, temperament, image } = req.body;
         try {
             const response = await BreedController.update(breedId, breed, weight, height, temperament, origin, image);
             return res.status(200).send(response);

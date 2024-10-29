@@ -47,9 +47,10 @@ class BreedController {
     }
     
 
-    async createBreed(name, weight, life_span, origin, [...temperament], [...image]) {
+    async createBreed(breedId, name, weight, life_span, origin, [...temperament], [...image]) {
 
         const newBreed = {
+            breedId,
             name,
             weight: weight.metric,
             life_span,
@@ -57,8 +58,7 @@ class BreedController {
             temperament: temperament[0],
             image: image[0]
         }
-        console.log(newBreed)
-        const responseBreed = await breedModel.create(+newBreed);
+        const responseBreed = await breedModel.create(newBreed);
 
         return responseBreed;
     }
