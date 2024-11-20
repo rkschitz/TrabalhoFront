@@ -5,6 +5,7 @@ import BreedModal from '../../components/BreedForm/index';
 import { AuthContext } from '../../auth/Context';
 import Button from 'react-bootstrap/Button';
 import { getAllUserBreeds, unfavoriteBreed } from '../../api/userBreed';
+import './styles.css'
 
 export default function Favorites() {
     const [favorites, setFavorites] = useState([]);

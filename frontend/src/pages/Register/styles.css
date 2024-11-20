@@ -1,61 +1,76 @@
-.container{
-    background-color: red;
-    padding: 20px;
-    margin: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px #000;
-    transition: 0.3s;
+.container-register {
     display: flex;
-    flex-direction: column;
     align-items: center;
+    height: 100%;
     justify-content: center;
-    width: 400px;
-    height: 450px;
-    background-color: #f0f0f0;
-}
 
-form{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
+    .container {
+        background-color: var(--var-bg-primary);
+        padding: 20px;
+        margin: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px #000;
+        transition: 0.3s;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 500px;
+        height: 500px;
+    }
 
-.container:hover{
-    box-shadow: 0 0 20px #000;
-    transform: scale(1.1);
-}
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
 
-.div-input {
-    display: flex;
-    flex-direction: column;
-    margin: 10px;
-}
+    .container:hover {
+        box-shadow: 0 0 20px #000;
+        transform: scale(1.1);
+    }
 
-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 0.3s;
-    
-}
+    .div-input {
+        display: flex;
+        flex-direction: column;
+        margin: 10px;
+    }
 
-form a {
-    text-decoration: none;
-    color: black;
-    padding-bottom: 10px;
-    transition: 0.3s;
-}
+    button {
+        background-color: var(--var-bg-secondary);
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.3s;
+        width: 70%;
+    }
 
-a:hover {
-    text-decoration: underline;
-    text-decoration-color: black;
-}
+    form a {
+        text-decoration: none;
+        color: black;
+        padding-bottom: 10px;
+        transition: 0.3s;
+        font-size: 14px;
+    }
 
+    a:hover {
+        text-decoration: underline;
+        text-decoration-color: black;
+    }
 
-.erro{
-    color: red !important;
+    .title h1{
+        color: var(--var-color-primary);
+        margin-bottom: 30px;
+    }
+
+    .title{
+        border-bottom: solid 1px;
+        width: 70%;
+        text-align: center;
+        border-color: var(--var-color-primary);
+        margin-bottom: 30px;
+    }
 }

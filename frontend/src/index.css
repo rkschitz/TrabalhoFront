@@ -1,14 +1,30 @@
 :root {
   --var-bg-nav-primary: #ffffff;
   --var-bg-nav-hover:	#ffffff;
-}
-
-html,body{
-  height: 100%;
+  --var-color-primary: rgba(39, 230, 255, 0.8); 
+  --var-bg-primary: rgba(251, 254, 255, 0.829); 
+  --var-bg-secondary:rgba(39, 230, 255, 0.8); 
 }
 
 *{
   box-sizing: border-box;
+}
+
+#root{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #3700ff;
+  
+}
+  .estrutura {
+    height: 100%;
+  }
+  
+.content {
+  height: 100%; 
+  background-color: red;
 }
 
 body {
