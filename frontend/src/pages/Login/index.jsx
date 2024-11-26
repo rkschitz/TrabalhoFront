@@ -41,27 +41,25 @@ export default function Login() {
 
     return (
         <div className="container-login">
-            <div className='container'>
+            <form>
                 <div className="title">
                     <h1>LOGIN</h1>
                 </div>
-                <form>
-                    <div className='div-input'>
-                        <InputFloatingLabel type="text"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            label="Email" />
-                    </div>
-                    <div className='div-input'>
-                        <InputFloatingLabel type="text"
-                            value={senha}
-                            onChange={(e) => setSenha(e.target.value)}
-                            label="Senha" />
-                    </div>
-                    <Link to='/register'><span>Não tem cadastro? Cadastre-se aqui</span></Link>
-                    <button type='submit' onClick={handleSubmit}>Entrar</button>
-                </form>
-            </div>
+                <div className='div-input'>
+                    <InputFloatingLabel type="text"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        label="Email" />
+                </div>
+                <div className='div-input'>
+                    <InputFloatingLabel type="password"
+                        value={senha}
+                        onChange={(e) => setSenha(e.target.value)}
+                        label="Senha" />
+                </div>
+                <span>Não tem cadastro? <Link to='/register'>Cadastre-se aqui</Link></span>
+                <button type='submit' onClick={handleSubmit}>Entrar</button>
+            </form>
         </div>
     )
 }

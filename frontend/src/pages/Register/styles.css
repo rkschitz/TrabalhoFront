@@ -1,76 +1,47 @@
 .container-register {
-    display: flex;
-    align-items: center;
     height: 100%;
+    display: flex;
     justify-content: center;
-
-    .container {
-        background-color: var(--var-bg-primary);
-        padding: 20px;
-        margin: 20px;
-        border-radius: 10px;
-        box-shadow: 0 0 10px #000;
-        transition: 0.3s;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        width: 500px;
-        height: 500px;
-    }
+    align-items: center;
+    background-color: var(--var-bg-secondary);
 
     form {
         display: flex;
-        flex-direction: column;
         align-items: center;
-        justify-content: center;
-    }
-
-    .container:hover {
-        box-shadow: 0 0 20px #000;
-        transform: scale(1.1);
+        flex-direction: column;
+        gap: 20px;
+        border: solid 1px black;
+        padding: 0px 20px 20px 20px;
+        border-radius: 10px;
+        background-color: var(--var-bg-primary);
+        width: 400px;
     }
 
     .div-input {
-        display: flex;
-        flex-direction: column;
-        margin: 10px;
+        width: 300px;
+    }
+
+    .title h1 {
+        border-bottom: solid 1px black;
+        padding: 30px;
+    }
+
+    span a {
+        text-decoration: none;
+        color: green;
+    }
+
+    span a:hover {
+        transition: 0.3s all;
+        color: blue;
     }
 
     button {
-        background-color: var(--var-bg-secondary);
-        color: white;
-        padding: 10px;
+        border-radius: 10px;
+        background-color: rgb(198, 199, 199);
+        padding: 10px 20px;
+        border-radius: 20px;
         border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: 0.3s;
-        width: 70%;
     }
 
-    form a {
-        text-decoration: none;
-        color: black;
-        padding-bottom: 10px;
-        transition: 0.3s;
-        font-size: 14px;
-    }
-
-    a:hover {
-        text-decoration: underline;
-        text-decoration-color: black;
-    }
-
-    .title h1{
-        color: var(--var-color-primary);
-        margin-bottom: 30px;
-    }
-
-    .title{
-        border-bottom: solid 1px;
-        width: 70%;
-        text-align: center;
-        border-color: var(--var-color-primary);
-        margin-bottom: 30px;
-    }
 }

@@ -1,16 +1,10 @@
-/* .content {
-    height: 100%;
+.estrutura{
+    min-height: 100%;
     display: flex;
+    justify-content: space-between;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .estrutura {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
+}
+
+.content{
     height: 100%;
-  } */
+}

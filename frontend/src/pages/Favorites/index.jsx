@@ -75,14 +75,14 @@ export default function Favorites() {
                         <p>ID: {favorite.breedId}</p>
                         <button className='desfavorite-button' onClick={unfavorite(favorite.id)}>{favorite.isCreated === true ? 'Excluir' : 'Desfavoritar'}</button>
                         {favorite.isCreated === true && <button className="favorite-button" onClick={() => handleEdit(favorite)}>Alterar</button>}
-                        <img src={favorite.breed.image} alt={`Imagem da raça ${favorite.breedId}`} className="favorite-image" />
+                        <img src={favorite.image} alt={`Imagem da raça ${favorite.breedId}`} className="favorite-image" />
                     </div>
                 ))
             ) : (
                 <p>Nenhum favorito encontrado.</p>
             )}
             <BreedModal 
-                show={showModal} 
+                show={showModal}
                 handleClose={() => setShowModal(false)} 
                 setIsUpdate={setIsUpdate} 
                 breed={currentBreed}

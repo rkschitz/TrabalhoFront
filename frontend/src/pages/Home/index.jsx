@@ -2,7 +2,7 @@ import './styles.css'
 
 export default function Home() {
   return (
-    <div className='home-container'>
+    <div className='home'>
       <h1>Bem-vindo à Nossa Aplicação!</h1>
       <p>Essa aplicação foi desenvolvida para a matéria de FullStack do professor Renan.</p>
       <p>
