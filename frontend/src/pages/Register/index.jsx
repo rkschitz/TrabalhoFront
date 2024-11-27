@@ -21,7 +21,7 @@ export default function Register() {
         navigate('/login')
       }
     } catch (error) {
-      console.log(error)
+      toast(error)
       if (error.status === 403) {
         return toast("Sem permissão.");
       }

@@ -4,7 +4,7 @@ const UserController = require("./user");
 class UserBreedApi{
     async createUserBreed(req, res){
         const { userId, breedId, isCreated } = req.body;
-        console.log(req.body)
+
         try {
             const responseUserBreed = await UserBreedController.createUserBreed(userId, breedId, isCreated);
             res.status(201).json(responseUserBreed);

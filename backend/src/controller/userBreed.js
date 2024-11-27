@@ -7,6 +7,16 @@ class UserBreedController {
         if (!userId || !breedId || isCreated === undefined) {
             throw new Error("userId, breedId e isCreated são obrigatórios.");
         }
+
+        const responseExistUserBreed = await userBreedModel.findAll({where:{
+            userId,
+            breedId
+        }})
+
+        if(responseExistUserBreed.length > 0){
+            throw new Error("Raça ja favoritada")
+        }
+
         const newUserBreed = {
             userId,
             breedId,

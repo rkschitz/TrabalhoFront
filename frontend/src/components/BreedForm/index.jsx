@@ -61,7 +61,6 @@ function BreedModal({ show, handleClose, setIsUpdate, breed }) {
                 toast('Raça atualizada com sucesso!');
             } else {
                 const response = await createBreed(newBreed);
-                console.log(response)
                 await createUserBreed(id, response.breedId);
                 toast('Nova raça salva com sucesso!');
             }

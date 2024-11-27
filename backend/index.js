@@ -27,7 +27,7 @@ app.use("/api/v1/userBreed", UserBreedRouter);
 const createTables = async () => {
   try {
   
-    await database.db.sync({ force: true }); 
+    await database.db.sync({ force: false }); 
     
     const adminData = {
       nome: 'admin', 
