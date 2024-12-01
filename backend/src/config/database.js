@@ -9,6 +9,7 @@ class Database {
 
     Init() {
         this.db = new Sequelize({
+
             database: process.env.DB_DATABASE,
             host: process.env.DB_HOST,
             username: process.env.DB_USERNAME,
@@ -19,6 +20,7 @@ class Database {
             //     require: true,
             //     rejectUnauthorized: false
             //   }}
+
         });
     }
 }

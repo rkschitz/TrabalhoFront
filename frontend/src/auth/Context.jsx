@@ -1,6 +1,5 @@
 import { createContext, useState, useEffect } from 'react';
 import { jwtDecode } from 'jwt-decode';
-import { Navigate } from 'react-router-dom';
 
 const isTokenValid = (token) => {
   try {
@@ -15,7 +14,6 @@ const isTokenValid = (token) => {
 const getRole = (token) => {
   try {
     const decoded = jwtDecode(token);
-    console.log(decoded)
     return decoded.role
   } catch (error) {
     return false;
@@ -66,7 +64,6 @@ export const AuthProvider = ({ children }) => {
     setRole(null);
     setId(null);
     localStorage.removeItem('token');
-    Navigate('/login');
   };
 
   if (loading) {

@@ -37,7 +37,7 @@ class UserController {
     return userValue;
   }
 
-  async update(id, nome, email, senha) {
+  async update(id, nome, email, senha, role) {
     const oldUser = await user.findByPk(id);
     if(email){
       const sameEmail = await user.findOne({ where: { email } });
@@ -47,6 +47,7 @@ class UserController {
     }
     oldUser.nome = nome || oldUser.nome;
     oldUser.email = email || oldUser.email;
+    oldUser.role = role || oldUser.role;
     oldUser.senha = senha
       ? await bcrypt.hash(String(senha), SALT_VALUE)
       : oldUser.senha;
@@ -85,7 +86,7 @@ class UserController {
       throw new Error("[2] Usuário e senha inválidos.");
     }
 
-    return jwt.sign({ id: userValue.id }, SECRET_KEY, { expiresIn: 60 * 60 });
+    return jwt.sign({ id: userValue.id, role: userValue.role }, SECRET_KEY, { expiresIn: 60 * 60 });
   }
 }
 
