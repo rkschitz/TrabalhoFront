@@ -1,16 +1,16 @@
 import React, { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../auth/Context"; // Importar o contexto de autenticação
-import { getAllUsers, deleteUser, getContext } from "../../api/user"; // Importar funções de API
-import UserModal from "../../components/UserForm/index"; // Importar seu modal de usuário
+import { AuthContext } from "../../auth/Context";
+import { getAllUsers, deleteUser, getContext } from "../../api/user";
+import UserModal from "../../components/UserForm/index";
 import './styles.css';
 
 export default function Profile() {
-    const { role, id } = useContext(AuthContext); // Obter o papel do usuário
+    const { role, id } = useContext(AuthContext);
     const [users, setUsers] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [selectedUser, setSelectedUser] = useState(null);
     const [isUpdate, setIsUpdate] = useState(false);
-    const [isCreating, setIsCreating] = useState(false); // Novo estado para criar um usuário
+    const [isCreating, setIsCreating] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -19,16 +19,15 @@ export default function Profile() {
             } else {
                 const response = await getContext();
                 setUsers([response]);
-                console.log(response)
             }
         };
-        
+
         fetchData();
     }, [role, isUpdate]);
 
     const fetchUsers = async () => {
         try {
-            const response = await getAllUsers(); // Chamar a API para obter todos os usuários
+            const response = await getAllUsers();
             setUsers(response.data);
         } catch (error) {
             console.error("Erro ao buscar usuários:", error);
@@ -37,17 +36,17 @@ export default function Profile() {
 
     const handleDeleteUser = async (userId) => {
         try {
-            await deleteUser(userId); // Chamar a API para excluir o usuário
-            setUsers((prevUsers) => prevUsers.filter(user => user.id !== userId)); // Atualizar a lista de usuários
+            await deleteUser(userId);
+            setUsers((prevUsers) => prevUsers.filter(user => user.id !== userId));
         } catch (error) {
             console.error("Erro ao excluir usuário:", error);
         }
     };
 
     const handleCreateUser = () => {
-        setSelectedUser(null); // Resetar o usuário selecionado
-        setIsCreating(true); // Indicar que estamos criando um novo usuário
-        setShowModal(true); // Mostrar o modal
+        setSelectedUser(null);
+        setIsCreating(true);
+        setShowModal(true);
     };
 
     return (
@@ -61,10 +60,10 @@ export default function Profile() {
                         {users.map(user => (
                             <li key={user.id}>
                                 <span>{user.nome} ({user.email}) ({user.role})</span>
-                                <button onClick={() => { 
-                                    setSelectedUser(user); 
-                                    setIsCreating(false); // Indicar que estamos alterando um usuário
-                                    setShowModal(true); 
+                                <button onClick={() => {
+                                    setSelectedUser(user);
+                                    setIsCreating(false);
+                                    setShowModal(true);
                                 }}>
                                     Alterar
                                 </button>
@@ -76,14 +75,13 @@ export default function Profile() {
             ) : (
                 <div>
                     <h2>Seus Dados</h2>
-                    {console.log(users)}
-                     {users.map(user => (
+                    {users.map(user => (
                         <div key={user.id}>
                             <span>{user.nome} ({user.email}) ({user.role})</span>
-                            <button onClick={() => { 
-                                setSelectedUser(user); 
+                            <button onClick={() => {
+                                setSelectedUser(user);
                                 setIsCreating(false);
-                                setShowModal(true); 
+                                setShowModal(true);
                             }}>
                                 Alterar
                             </button>
@@ -92,12 +90,12 @@ export default function Profile() {
                     <button onClick={() => handleDeleteUser(id)}>Excluir Conta</button>
                 </div>
             )}
-            <UserModal 
-                show={showModal} 
-                handleClose={() => setShowModal(false)} 
-                setIsUpdate={setIsUpdate} 
+            <UserModal
+                show={showModal}
+                handleClose={() => setShowModal(false)}
+                setIsUpdate={setIsUpdate}
                 user={selectedUser}
-                isCreating={isCreating} // Passar o estado de criação para o modal
+                isCreating={isCreating}
             />
         </div>
     );

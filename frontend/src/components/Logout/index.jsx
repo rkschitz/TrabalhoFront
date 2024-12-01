@@ -1,9 +1,9 @@
 import { useContext } from 'react';
 import { AuthContext } from '../../auth/Context';
-import './styles.css'
+import Button from 'react-bootstrap/esm/Button';
 
 export default function LogoutButton() {
   const { logout } = useContext(AuthContext);
 
-  return <button onClick={logout}>Logout</button>;
+  return <Button variant="dark" onClick={logout}>Logout</Button>
 }

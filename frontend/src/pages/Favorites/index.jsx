@@ -5,6 +5,7 @@ import BreedModal from '../../components/BreedForm/index';
 import { AuthContext } from '../../auth/Context';
 import Button from 'react-bootstrap/Button';
 import { getAllUserBreeds, unfavoriteBreed } from '../../api/userBreed';
+import './styles.css'
 
 export default function Favorites() {
     const [favorites, setFavorites] = useState([]);
@@ -18,18 +19,7 @@ export default function Favorites() {
             const response = await getUserBreeds(userId);
             return response.data;
         } catch (error) {
-            handleErrors(error);
-            return [];
-        }
-    };
-
-    const handleErrors = (error) => {
-        if (error.response.status === 403) {
-            toast("Sem permissão.");
-        } else if (error.response.status === 401 || error.response.status === 404) {
-            toast('Email ou senha inválido, tente novamente!');
-        } else {
-            toast('Erro inesperado, tente novamente mais tarde!');
+            toast(error);
         }
     };
 
@@ -69,21 +59,21 @@ export default function Favorites() {
             <Button variant="primary" onClick={() => { setCurrentBreed(null); setIsUpdate(false); setShowModal(true); }}>Adicionar Nova Raça</Button>
             {favorites.length > 0 ? (
                 favorites.map((favorite) => (
-                    <div key={favorite.breedId} className="favorite">
+                    <div key={favorite.breedId} className="breed">
                         {id === favorite.userId && <p className="favorite-button">Minha</p>}
                         <p>ID: {favorite.breedId}</p>
-                        <button className='desfavorite-button' onClick={unfavorite(favorite.id)}>{favorite.isCreated === true ? 'Excluir' : 'Desfavoritar'}</button>
+                        <button className='unfavorite-button' onClick={unfavorite(favorite.id)}>{favorite.isCreated === true ? 'Excluir' : 'Desfavoritar 💔'}</button>
                         {favorite.isCreated === true && <button className="favorite-button" onClick={() => handleEdit(favorite)}>Alterar</button>}
-                        <img src={favorite.breed.image} alt={`Imagem da raça ${favorite.breedId}`} className="favorite-image" />
+                        <img src={favorite.image} alt={`Imagem da raça ${favorite.breedId}`} className="breed-image" />
                     </div>
                 ))
             ) : (
                 <p>Nenhum favorito encontrado.</p>
             )}
-            <BreedModal 
-                show={showModal} 
-                handleClose={() => setShowModal(false)} 
-                setIsUpdate={setIsUpdate} 
+            <BreedModal
+                show={showModal}
+                handleClose={() => setShowModal(false)}
+                setIsUpdate={setIsUpdate}
                 breed={currentBreed}
             />
         </div>

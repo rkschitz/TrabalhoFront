@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { getBreeds, alimentBreed } from "../../api/breed";
 import { favoriteBreed } from "../../api/userBreed";
 import { AuthContext } from '../../auth/Context'
+import { toast } from 'react-toastify'
 import './styles.css';
 
 export default function BreedFeed() {
@@ -11,7 +12,6 @@ export default function BreedFeed() {
     const getBreed = async () => {
         try {
             const response = await getBreeds();
-            console.log(response)
             setBreeds(response || []); // Garante que breeds seja um array
         } catch (error) {
             console.error("Erro ao buscar as raças:", error);
@@ -19,22 +19,23 @@ export default function BreedFeed() {
     };
 
     const favorite = (breedId) => async () => {
-        console.log(breedId)
         try {
             const response = await favoriteBreed(id, breedId, false);
-            console.log(response);
+            if (response.status === 201){
+                toast('Raça favoritada com sucesso');
+            }
         } catch (error) {
-            console.error("Erro ao favoritar a raça:", error);
+            toast(error.response.data.message);
         }
     };
 
     const alimetFeed = async () => {
-        console.log("Alimentando feed");
+        toast("Alimentando feed");
         try {
             await alimentBreed();
             await getBreed();
         } catch (error) {
-            console.error("Erro ao alimentar o feed:", error);
+            toast(error);
         }
     };
 
@@ -48,7 +49,7 @@ export default function BreedFeed() {
             {role === 'admin' && <button onClick={() => alimetFeed()}>Alimentar Feed</button>}
             {breeds.map((breed) => (
                 <div key={breed.breedId} className="breed">
-                    <button className="favorite-button" onClick={favorite(breed.breedId, true)}>❤️❤️❤️❤️</button>
+                    <button className="favorite-button" onClick={favorite(breed.breedId, true)}>Favoritar❤️</button>
                     <p>ID: {breed.breedId}</p>
                     <img src={breed.image} alt={`Imagem da raça ${breed.breedId}`} className="breed-image" />
                 </div>

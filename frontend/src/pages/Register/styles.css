@@ -1,61 +1,47 @@
-.container{
-    background-color: red;
-    padding: 20px;
-    margin: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px #000;
-    transition: 0.3s;
+.container-register {
+    height: 100%;
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
-    width: 400px;
-    height: 450px;
-    background-color: #f0f0f0;
-}
-
-form{
-    display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
-}
+    background-color: var(--var-bg-secondary);
 
-.container:hover{
-    box-shadow: 0 0 20px #000;
-    transform: scale(1.1);
-}
+    form {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 20px;
+        border: solid 1px black;
+        padding: 0px 20px 20px 20px;
+        border-radius: 10px;
+        background-color: var(--var-bg-primary);
+        width: 400px;
+    }
 
-.div-input {
-    display: flex;
-    flex-direction: column;
-    margin: 10px;
-}
+    .div-input {
+        width: 300px;
+    }
 
-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 0.3s;
-    
-}
+    .title h1 {
+        border-bottom: solid 1px black;
+        padding: 30px;
+    }
 
-form a {
-    text-decoration: none;
-    color: black;
-    padding-bottom: 10px;
-    transition: 0.3s;
-}
+    span a {
+        text-decoration: none;
+        color: green;
+    }
 
-a:hover {
-    text-decoration: underline;
-    text-decoration-color: black;
-}
+    span a:hover {
+        transition: 0.3s all;
+        color: blue;
+    }
 
+    button {
+        border-radius: 10px;
+        background-color: rgb(198, 199, 199);
+        padding: 10px 20px;
+        border-radius: 20px;
+        border: none;
+    }
 
-.erro{
-    color: red !important;
 }

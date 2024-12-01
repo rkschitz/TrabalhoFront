@@ -1,14 +1,10 @@
-:root {
-  --var-bg-nav-primary: #ffffff;
-  --var-bg-nav-hover:	#ffffff;
+:root{
+  --var-bg-primary: #eeeeee;
+  --var-bg-secondary: #f7f7f7;
 }
 
-html,body{
-  height: 100%;
-}
-
-*{
-  box-sizing: border-box;
+#root{
+  height: 100vh;
 }
 
 body {
