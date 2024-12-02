@@ -1,26 +1,25 @@
-#img base
+# Etapa de build
 FROM node:20 as build
 
-#criar app
+# Criar o diretório do app
 WORKDIR /app
 
-#copiar package.json
+# Copiar os arquivos package.json e instalar dependências
 COPY package*.json ./
-
-#instalar dependencias
 RUN npm install
 
-#copiar arquivos
+# Copiar os arquivos do projeto e criar o build
 COPY . .
-
-#build
 RUN npm run build
 
-#iniciar o nginx
+# Etapa de produção com Nginx
 FROM nginx:alpine
 
-#pegar os arquivos da dist e colocar no nginx
+# Copiar a configuração personalizada do Nginx
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# Copiar os arquivos de build para o Nginx
 COPY --from=build /app/dist /usr/share/nginx/html
 
-#porta
+# Expor a porta 80
 EXPOSE 80
