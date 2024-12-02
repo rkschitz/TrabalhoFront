@@ -6,6 +6,7 @@ const UserRouter = require("./src/routes/user");
 const BreedRouter = require("./src/routes/breed");
 const User = require("./src/model/user");
 const UserBreedRouter = require("./src/routes/userBreed");
+const bcrypt = require("bcrypt");
 require("./src/model/association");
 
 const app = express();
@@ -26,17 +27,19 @@ app.use("/api/v1/userBreed", UserBreedRouter);
 
 const createTables = async () => {
   try {
-  
-    await database.db.sync({ force: false }); 
-    
+
+    await database.db.sync({ force: true });
+
+    const cypherSenha = await bcrypt.hash('admin', 10);
+
     const adminData = {
-      nome: 'admin', 
-      email: 'admin', 
-      senha: 'admin', 
-      role: 'admin' 
+      nome: 'admin',
+      email: 'admin',
+      senha: cypherSenha,
+      role: 'admin'
     };
 
-    
+
     await User.create(adminData);
     console.log("Todas as tabelas foram criadas com sucesso!");
   } catch (error) {
