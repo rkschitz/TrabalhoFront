@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // 2 - Adicionar Axios e criar uma instância do Axios
 const api = axios.create({
-  baseURL: 'https://backend-fullstack-o59m.onrender.com',
+  baseURL: 'http://localhost:3000',
   timeout: 10000,
 });
 

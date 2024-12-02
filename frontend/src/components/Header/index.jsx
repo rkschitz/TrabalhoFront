@@ -13,12 +13,12 @@ export default function Header() {
     const { token, role } = useContext(AuthContext);
 
     return (
-        <Navbar data-bs-theme="dark" style={{ backgroundColor: 'var(--var-bg-primary)' }} className='text-dark'>
+        <Navbar >
             <Container>
                 <Navbar.Brand href="/">
                     <img src={logo} alt="Logo" />
                 </Navbar.Brand>
-                <Nav className="ms-auto">
+                <Nav >
                     <Nav.Link href="/" className='text-dark'>Home</Nav.Link>
                     <Nav.Link href="/favorites" className='text-dark'>Favorites</Nav.Link>
                     <Nav.Link href="/feed" className='text-dark'>Feed</Nav.Link>

@@ -55,7 +55,7 @@ export default function Profile() {
             {role === 'admin' ? (
                 <>
                     <h2>Lista de Usuários</h2>
-                    <button onClick={handleCreateUser}>Adicionar Usuário</button>
+
                     <ul>
                         {users.map(user => (
                             <li key={user.id}>
@@ -67,9 +67,11 @@ export default function Profile() {
                                 }}>
                                     Alterar
                                 </button>
-                                <button onClick={() => handleDeleteUser(user.id)}>Excluir</button>
+                                <button className="botao-excluir" onClick={() => handleDeleteUser(user.id)}>Excluir</button>
                             </li>
+
                         ))}
+                        <button onClick={handleCreateUser}>Adicionar Usuário</button>
                     </ul>
                 </>
             ) : (
@@ -87,8 +89,10 @@ export default function Profile() {
                             </button>
                         </div>
                     ))}
+
                     <button onClick={() => handleDeleteUser(id)}>Excluir Conta</button>
                 </div>
+
             )}
             <UserModal
                 show={showModal}

@@ -56,20 +56,28 @@ export default function Favorites() {
     return (
         <div className="favorites">
             <h1>Favoritos</h1>
-            <Button variant="primary" onClick={() => { setCurrentBreed(null); setIsUpdate(false); setShowModal(true); }}>Adicionar Nova Raça</Button>
+            {/* <Button variant="primary" onClick={() => { setCurrentBreed(null); setIsUpdate(false); setShowModal(true); }}>
+                Adicionar Nova Raça
+            </Button> */}
+            
             {favorites.length > 0 ? (
                 favorites.map((favorite) => (
-                    <div key={favorite.breedId} className="breed">
-                        {id === favorite.userId && <p className="favorite-button">Minha</p>}
-                        <p>ID: {favorite.breedId}</p>
-                        <button className='unfavorite-button' onClick={unfavorite(favorite.id)}>{favorite.isCreated === true ? 'Excluir' : 'Desfavoritar 💔'}</button>
-                        {favorite.isCreated === true && <button className="favorite-button" onClick={() => handleEdit(favorite)}>Alterar</button>}
-                        <img src={favorite.image} alt={`Imagem da raça ${favorite.breedId}`} className="breed-image" />
+                    <div key={favorite.breedId} className="breed-list"> {/* Nova div envolvendo */}
+                        <div className="breed"> {/* Sua div original com a class "breed" */}
+                            {id === favorite.userId && <p className="favorite-button">Minha</p>}
+                            <p>ID: {favorite.breedId}</p>
+                            <button className="unfavorite-button" onClick={unfavorite(favorite.id)}>
+                                {favorite.isCreated === true ? 'Excluir' : 'Desfavoritar 💔'}
+                            </button>
+                            {favorite.isCreated === true && <button className="favorite-button" onClick={() => handleEdit(favorite)}>Alterar</button>}
+                            <img src={favorite.image} alt={`Imagem da raça ${favorite.breedId}`} className="breed-image" />
+                        </div>
                     </div>
                 ))
             ) : (
                 <p>Nenhum favorito encontrado.</p>
             )}
+            
             <BreedModal
                 show={showModal}
                 handleClose={() => setShowModal(false)}
