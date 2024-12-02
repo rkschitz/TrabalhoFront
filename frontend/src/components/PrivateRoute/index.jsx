@@ -5,8 +5,7 @@ import { AuthContext } from '../../auth/Context';
 const PrivateRoute = () => {
   const { token } = useContext(AuthContext);
 
-  // Se estiver autenticado, renderiza o componente desejado, caso contrário, redireciona para o login
-  return token ? <Outlet /> : <Navigate to="/login" />;
+  return token ? <Outlet /> : <Navigate to="/login" state={{reload: true}}/>;
 };
 
 export default PrivateRoute;

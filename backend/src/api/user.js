@@ -21,7 +21,7 @@ class UserApi {
 
     async updateUser(req, res) {
         const { id } = req.params;
-        const { nome, email, senha, role } = req.body;
+        const { nome, email, senha, userRole } = req.body;
         let userAdmin = false;
     
         try {
@@ -39,7 +39,7 @@ class UserApi {
                 return res.status(403).send({ error: "Permissão negada para alterar o papel para admin" });
             }
     
-            const newRole = userAdmin ? role : userToUpdate.dataValues.role;
+            const newRole = userAdmin ? userRole : userToUpdate.dataValues.userRole;
     
             const updatedUser = await UserController.update(Number(id), nome, email, senha, newRole);
             return res.status(200).send(updatedUser);
@@ -101,7 +101,6 @@ class UserApi {
         
         try {
             const token = await UserController.login(email, senha)
-
            return res.status(200).send({ token })
         } catch (e) {
            return res.status(400).send({ error: e.message })

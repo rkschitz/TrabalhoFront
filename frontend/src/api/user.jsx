@@ -39,6 +39,5 @@ export const loginUser = async (email, senha) => {
 
 export const getUserBreeds = async (id) => {
   const response = await api.get(`/api/v1/user/${id}/breeds`);
-  console.log(response)
   return response;
 }

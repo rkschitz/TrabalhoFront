@@ -4,24 +4,25 @@ import Modal from 'react-bootstrap/Modal';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { createUser, updateUser } from '../../api/user';
 import { AuthContext } from '../../auth/Context';
+import { toast } from 'react-toastify';
 
 function UserModal({ show, handleClose, setIsUpdate, user }) {
-    const { id } = useContext(AuthContext);
+    const { id, role } = useContext(AuthContext);
 
     const [userId, setUserId] = useState('');
     const [nome, setNome] = useState('');
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
-    const [role, setRole] = useState('viewer'); // Valor padrão para o role
+    const [userRole, setUserRole] = useState('viewer');
 
     useEffect(() => {
         if (user) {
-            setUserId(user.id); // Preencher o ID (não será alterado)
+            setUserId(user.id);
             setNome(user.nome);
             setEmail(user.email);
-            setRole(user.role);
+            setUserRole(user.role);
         } else {
-            resetForm(); // Resetar se for um novo usuário
+            resetForm();
         }
     }, [user]);
 
@@ -30,7 +31,7 @@ function UserModal({ show, handleClose, setIsUpdate, user }) {
         setNome('');
         setEmail('');
         setSenha('');
-        setRole('viewer'); // Resetar o role para o valor padrão
+        setUserRole('viewer');
     };
 
     const handleSubmit = async () => {
@@ -38,18 +39,16 @@ function UserModal({ show, handleClose, setIsUpdate, user }) {
             nome,
             email,
             senha,
-            role,
+            userRole,
         };
 
         try {
             if (user) {
-                // Atualiza o usuário
                 await updateUser(userId, newUser);
-                console.log('Usuário atualizado com sucesso!');
+                toast('Usuário atualizado com sucesso!');
             } else {
-                // Cria novo usuário
                 await createUser(newUser);
-                console.log('Novo usuário criado com sucesso!');
+                toast('Novo usuário criado com sucesso!');
             }
 
             setIsUpdate(true);
@@ -102,8 +101,8 @@ function UserModal({ show, handleClose, setIsUpdate, user }) {
                             <label className="form-label">Role</label>
                             <select
                                 className="form-control"
-                                value={role}
-                                onChange={(e) => setRole(e.target.value)}
+                                value={userRole}
+                                onChange={(e) => setUserRole(e.target.value)}
                                 required
                             >
                                 <option value="viewer">Viewer</option>

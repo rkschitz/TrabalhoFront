@@ -7,6 +7,7 @@ import { createBreed } from '../../api/breed';
 import { createUserBreed } from '../../api/userBreed';
 import { updateBreed } from '../../api/breed';
 import { AuthContext } from '../../auth/Context';
+import { toast } from 'react-toastify';
 
 function BreedModal({ show, handleClose, setIsUpdate, breed }) {
     const { id } = useContext(AuthContext);
@@ -56,14 +57,12 @@ function BreedModal({ show, handleClose, setIsUpdate, breed }) {
 
         try {
             if (breed) {
-                // Atualiza a raça
                 await updateBreed(breedId, newBreed);
-                console.log('Raça atualizada com sucesso!');
+                toast('Raça atualizada com sucesso!');
             } else {
-                // Cria nova raça
                 const response = await createBreed(newBreed);
                 await createUserBreed(id, response.breedId);
-                console.log('Nova raça salva com sucesso!');
+                toast('Nova raça salva com sucesso!');
             }
 
             setIsUpdate(true);
