@@ -1,15 +1,10 @@
 .breed-feed {
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     align-items: center;
     padding: 20px;
     font-family: Arial, sans-serif;
-
-    .breed-feed h1 {
-        font-size: 2rem;
-        color: #333;
-        margin-bottom: 20px;
-    }
 
     .breed-feed button {
         background-color: #4CAF50;

@@ -29,7 +29,8 @@ export default function Login() {
                 return navigate('/');
             }
         } catch (error) {
-            if (error.response.status === 403) {
+            console.log(error)           
+             if (error.response.status === 403) {
                 return toast("Sem permissão.");
             }
             if (error.response.status === 401 || error.response.status === 404) {

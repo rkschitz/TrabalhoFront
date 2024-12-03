@@ -1,6 +1,38 @@
-.home{
+.home {
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; 
+    background-color: #f9f9f9; 
+    color: #343a40;
+    font-family: 'Poppins', sans-serif;
+    padding: 2rem;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.home h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #007bff; /* Azul vibrante */
+}
+
+.home p {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.home a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.home a:hover {
+    color: #0056b3;
+    text-decoration: underline;
 }

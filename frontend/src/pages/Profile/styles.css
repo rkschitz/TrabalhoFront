@@ -1,123 +1,79 @@
-/* styles.css */
-
 .profile {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    max-width: 800px;
-    margin: auto;
+    font-family: 'Poppins', sans-serif;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #f9f9f9; 
+    border-radius: 20px;
+    box-shadow: 8px 8px  rgba(0, 0, 0, 0.1); 
+}
 
+.profile h1 {
+    font-size: 2rem;
+    color: #343a40;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
 
-    .profile h1 {
-        font-size: 2rem;
-        color: #333;
-        text-align: center;
-        margin-bottom: 20px;
-    }
+.profile h2 {
+    font-size: 1.5rem;
+    color: #0078f9;
+    margin-bottom: 1rem;
+    text-align: center;
+}
 
-    .profile h2 {
-        font-size: 1.5rem;
-        color: #555;
-        margin-bottom: 15px;
-        text-align: left;
-    }
+.profile ul {
+    list-style: none;
+    padding: 0;
+}
 
-    button {
-        padding: 8px 12px;
-        font-size: 0.9rem;
-        color: #fff;
-        background-color: #007bff;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
+.profile li span {
+    font-size: 1rem;
+    color: #343a40;
+}
 
-    .botao-excluir {
-        background-color: #dc3545;
-        align-items: center;
-        justify-content: center;
-    }
+.profile button {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-left: 0.5rem;
+}
 
-    button:hover {
-        background-color: #0056b3;
-    }
+.profile button:hover {
+    transform: scale(1.05);
+}
 
-    button:disabled {
-        background-color: #ccc;
-        cursor: not-allowed;
-    }
+.botao-excluir {
+    background-color: #dc3545; 
+    color: #ffffff;
+}
 
-    ul {
-        list-style: none;
-        padding: 0;
-    }
+.botao-excluir:hover {
+    background-color: #b02a37;
+}
 
-    li {
-        padding: 10px 15px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        margin-bottom: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        background-color: #fff;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
+.profile button:not(.botao-excluir) {
+    background-color: #007bff; 
+    color: #ffffff;
+}
 
-    li:hover {
-        transform: scale(1.02);
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
+.profile button:not(.botao-excluir):hover {
+    background-color: #0056b3;
+}
 
-    li span {
-        font-size: 1rem;
-        color: #333;
-        margin-right: 15px;
-    }
+.profile div {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    border: 1px solid #535b63;
+    border-radius: 20px;
+    background-color: #e9f4ff; 
+}
 
-    .profile button+button {
-        margin-left: 10px;
-    }
-
-    .profile div {
-        margin-top: 20px;
-    }
-
-    button.add-user {
-        display: inline-block;
-        margin-bottom: 20px;
-        background-color: #28a745;
-    }
-
-    button.add-user:hover {
-        background-color: #218838;
-    }
-
-    @media (max-width: 600px) {
-        .profile {
-            padding: 10px;
-            font-size: 0.9rem;
-        }
-
-        li {
-            flex-direction: column;
-            align-items: flex-start;
-        }
-
-        button {
-            margin-top: 10px;
-            width: 100%;
-        }
-
-        button.add-user {
-            width: 100%;
-            text-align: center;
-        }
-    }
-
+.profile div span {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #343a40;
 }

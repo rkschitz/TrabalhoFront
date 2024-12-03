@@ -9,22 +9,21 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 
 export default function Header() {
-
-    const { token, role } = useContext(AuthContext);
+    const { token } = useContext(AuthContext);
 
     return (
-        <Navbar >
-            <Container>
+        <Navbar className="navbar-container">
+            <Container fluid>
                 <Navbar.Brand href="/">
                     <img src={logo} alt="Logo" />
                 </Navbar.Brand>
-                <Nav >
-                    <Nav.Link href="/" className='text-dark'>Home</Nav.Link>
-                    <Nav.Link href="/favorites" className='text-dark'>Favorites</Nav.Link>
-                    <Nav.Link href="/feed" className='text-dark'>Feed</Nav.Link>
-                    {token && <Nav.Link href="/profile" className='text-dark'>Profile</Nav.Link>}
-                    {token && <LogoutButton />}
+                <Nav className="mx-auto">
+                    <Nav.Link href="/" className='custom-nav-link mx-3'>HOME</Nav.Link>
+                    <Nav.Link href="/favorites" className='custom-nav-link mx-3'>FAVORITES</Nav.Link>
+                    <Nav.Link href="/feed" className='custom-nav-link mx-3'>FEED</Nav.Link>
+                    {token && <Nav.Link href="/profile" className='custom-nav-link mx-3'>PROFILE</Nav.Link>}
                 </Nav>
+                {token && <LogoutButton />}
             </Container>
         </Navbar>
     );

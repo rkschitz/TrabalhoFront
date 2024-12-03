@@ -77,7 +77,7 @@ export default function BreedFeed() {
             </>)}
             {breeds.map((breed) => (
                 <div key={breed.breedId} className="breed">
-                    <button className="favorite-button" onClick={favorite(breed.breedId, true)}>Favoritar</button>
+                    <button className="favorite-button" onClick={favorite(breed.breedId, true)}>Favoritar ❤️</button>
                     {role === 'admin' && <button className="favorite-button" onClick={() => handleEdit(breed)}>Alterar</button>}
                     {role === 'admin' && <button className="favorite-button" onClick={() => handleDelete(breed)}>Excluir</button>}
                     <p>Nome: {breed.name}</p>

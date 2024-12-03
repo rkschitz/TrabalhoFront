@@ -1,0 +1,22 @@
+.logout-button {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: white;
+    background-color: #FE633A;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.logout-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.logout-button:active {
+    background-color: #004085;
+    transform: scale(0.95);
+}
