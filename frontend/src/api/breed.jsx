@@ -10,6 +10,12 @@ export const alimentBreed = async () => {
   return response;
 }
 
+export const deleteBreed = async (breedId) => {
+  console.log(breedId)
+  const response = await api.delete(`/api/v1/breed/${breedId}`);
+  return response
+}
+
 export const getBreedById = async (id) => {
   const response = await api.get(`/api/v1/breed/${id}`);
   return response.data;

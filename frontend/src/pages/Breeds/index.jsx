@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { getBreeds, alimentBreed } from "../../api/breed";
+import { getBreeds, alimentBreed, deleteBreed } from "../../api/breed";
 import { favoriteBreed } from "../../api/userBreed";
 import { AuthContext } from '../../auth/Context'
 import { toast } from 'react-toastify'
@@ -35,12 +35,12 @@ export default function BreedFeed() {
     };
 
     const alimetFeed = async () => {
-        toast("Alimentando feed");
         try {
             await alimentBreed();
             await getBreed();
         } catch (error) {
             toast(error);
+            await getBreed();
         }
     };
 
@@ -48,6 +48,19 @@ export default function BreedFeed() {
         setCurrentBreed(breed);
         setIsUpdate(true);
         setShowModal(true);
+    }
+
+    const handleDelete = async (breed) => {
+        try {
+            const response = await deleteBreed(breed.breedId);
+            console.log(response)
+            if (response) {
+                toast('Raça deletada com sucesso')
+            }
+        } catch (e) {
+            toast(e)
+        }
+        getBreed();
     }
 
     useEffect(() => {
@@ -66,7 +79,9 @@ export default function BreedFeed() {
                 <div key={breed.breedId} className="breed">
                     <button className="favorite-button" onClick={favorite(breed.breedId, true)}>Favoritar</button>
                     {role === 'admin' && <button className="favorite-button" onClick={() => handleEdit(breed)}>Alterar</button>}
-                    <p>ID: {breed.breedId}</p>
+                    {role === 'admin' && <button className="favorite-button" onClick={() => handleDelete(breed)}>Excluir</button>}
+                    <p>Nome: {breed.name}</p>
+                    <p>Origem: {breed.origin}</p>
                     <img src={breed.image} alt={`Imagem da raça ${breed.breedId}`} className="breed-image" />
                 </div>
             ))}

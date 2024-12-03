@@ -27,20 +27,28 @@ app.use("/api/v1/userBreed", UserBreedRouter);
 
 const createTables = async () => {
   try {
+    await database.db.sync({ force: false });
 
-    await database.db.sync({ force: true });
+    const adminExist = await User.findOne({
+      where: { role: 'admin' }
+    });
 
-    const cypherSenha = await bcrypt.hash('admin', 10);
+    if (!adminExist) {
+      const cypherSenha = await bcrypt.hash('admin', 10);
 
-    const adminData = {
-      nome: 'admin',
-      email: 'admin',
-      senha: cypherSenha,
-      role: 'admin'
-    };
+      const adminData = {
+        nome: 'admin',
+        email: 'admin',
+        senha: cypherSenha,
+        role: 'admin'
+      };
 
+      await User.create(adminData);
+      console.log("Administrador criado com sucesso!");
+    } else {
+      console.log("Já existe um administrador no banco de dados.");
+    }
 
-    await User.create(adminData);
     console.log("Todas as tabelas foram criadas com sucesso!");
   } catch (error) {
     console.error(`Erro ao inicializar o banco de dados: ${error}`);
